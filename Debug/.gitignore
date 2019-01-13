@@ -1,0 +1,11 @@
+/HAL_Driver/
+/Utilities/
+/hal_stm_lvgl/
+/lv_examples/
+/sources.mk
+/lvgl/
+/makefile
+/objects.list
+/objects.mk
+/src/
+/startup/
