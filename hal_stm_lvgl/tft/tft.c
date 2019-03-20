@@ -8,8 +8,6 @@
  *********************/
 #include "lv_conf.h"
 #include "lvgl/lvgl.h"
-#include "lvgl/lv_core/lv_vdb.h"
-#include "lvgl/lv_hal/lv_hal.h"
 #include <string.h>
 
 #include "tft.h"
@@ -63,10 +61,8 @@
  **********************/
 
 /*These 3 functions are needed by LittlevGL*/
-static void ex_disp_flush(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const lv_color_t * color_p);
-static void ex_disp_map(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const lv_color_t * color_p);
-static void ex_disp_fill(int32_t x1, int32_t y1, int32_t x2, int32_t y2,  lv_color_t color);
-#if USE_LV_GPU
+static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p);
+#if LV_USE_GPU
 static void gpu_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa);
 static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color);
 #endif
@@ -79,14 +75,14 @@ static void DMA_Config(void);
 static void DMA_TransferComplete(DMA_HandleTypeDef *han);
 static void DMA_TransferError(DMA_HandleTypeDef *han);
 
-#if USE_LV_GPU
+#if LV_USE_GPU
 static void DMA2D_Config(void);
 #endif
 
 /**********************
  *  STATIC VARIABLES
  **********************/
-#if USE_LV_GPU
+#if LV_USE_GPU
 static DMA2D_HandleTypeDef Dma2dHandle;
 #endif
 static LTDC_HandleTypeDef  hLtdcHandler;
@@ -111,6 +107,7 @@ static int32_t            y2_fill;
 static int32_t            y_fill_act;
 static const lv_color_t * buf_to_flush;
 
+static lv_disp_t *our_disp = NULL;
 /**********************
  *      MACROS
  **********************/
@@ -121,9 +118,9 @@ static const lv_color_t * buf_to_flush;
 
 void tft_init(void)
 {
-    lv_disp_drv_t disp_drv;
-    lv_disp_drv_init(&disp_drv);
-
+	/* There is only one display on STM32 */
+	if(our_disp != NULL)
+		abort();
     /* LCD Initialization */
     LCD_Init();
 
@@ -135,17 +132,51 @@ void tft_init(void)
 
     DMA_Config();
 
-    disp_drv.disp_fill = ex_disp_fill;
-    disp_drv.disp_map = ex_disp_map;
-    disp_drv.disp_flush = ex_disp_flush;
-
-#if USE_LV_GPU != 0
+#if LV_USE_GPU != 0
     DMA2D_Config();
-    disp_drv.mem_blend = gpu_mem_blend;
-    disp_drv.mem_fill = gpu_mem_fill;
+#endif
+   /*-----------------------------
+	* Create a buffer for drawing
+	*----------------------------*/
+
+   /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
+
+	static lv_disp_buf_t disp_buf_1;
+	static lv_color_t buf1_1[LV_HOR_RES_MAX * 10];                      /*A buffer for 10 rows*/
+	lv_disp_buf_init(&disp_buf_1, buf1_1, NULL, LV_HOR_RES_MAX * 10);   /*Initialize the display buffer*/
+
+
+	/*-----------------------------------
+	* Register the display in LittlevGL
+	*----------------------------------*/
+
+	lv_disp_drv_t disp_drv;                         /*Descriptor of a display driver*/
+	lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
+
+	/*Set up the functions to access to your display*/
+
+	/*Set the resolution of the display*/
+	disp_drv.hor_res = 480;
+	disp_drv.ver_res = 272;
+
+	/*Used to copy the buffer's content to the display*/
+	disp_drv.flush_cb = ex_disp_flush;
+
+	/*Set a display buffer*/
+	disp_drv.buffer = &disp_buf_1;
+
+#if LV_USE_GPU
+	/*Optionally add functions to access the GPU. (Only in buffered mode, LV_VDB_SIZE != 0)*/
+
+	/*Blend two color array using opacity*/
+	disp_drv.mem_blend = gpu_mem_blend;
+
+	/*Fill a memory array with a color*/
+	disp_drv.mem_fill = gpu_mem_fill;
 #endif
 
-    lv_disp_drv_register(&disp_drv);
+	/*Finally register the driver*/
+	our_disp = lv_disp_drv_register(&disp_drv);
 }
 
 /**********************
@@ -156,9 +187,14 @@ void tft_init(void)
  * You can use DMA or any hardware acceleration to do this operation in the background but
  * 'lv_flush_ready()' has to be called when finished
  * This function is required only when LV_VDB_SIZE != 0 in lv_conf.h*/
-static void ex_disp_flush(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const lv_color_t * color_p)
+static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p)
 {
+	int32_t x1 = area->x1;
+	int32_t x2 = area->x2;
+	int32_t y1 = area->y1;
+	int32_t y2 = area->y2;
     /*Return if the area is out the screen*/
+
     if(x2 < 0) return;
     if(y2 < 0) return;
     if(x1 > TFT_HOR_RES - 1) return;
@@ -193,85 +229,7 @@ static void ex_disp_flush(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const 
     }
 }
 
-
-/* Write a pixel array (called 'map') to the a specific area on the display
- * This function is required only when LV_VDB_SIZE == 0 in lv_conf.h*/
-static void ex_disp_map(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const lv_color_t * color_p)
-{
-
-    /*Return if the area is out the screen*/
-    if(x2 < 0) return;
-    if(y2 < 0) return;
-    if(x1 > TFT_HOR_RES - 1) return;
-    if(y1 > TFT_VER_RES - 1) return;
-
-    /*Truncate the area to the screen*/
-    int32_t act_x1 = x1 < 0 ? 0 : x1;
-    int32_t act_y1 = y1 < 0 ? 0 : y1;
-    int32_t act_x2 = x2 > TFT_HOR_RES - 1 ? TFT_HOR_RES - 1 : x2;
-    int32_t act_y2 = y2 > TFT_VER_RES - 1 ? TFT_VER_RES - 1 : y2;
-
-#if LV_VDB_DOUBLE == 0
-    uint32_t y;
-    for(y = act_y1; y <= act_y2; y++) {
-        memcpy((void*)&my_fb[y * TFT_HOR_RES + act_x1],
-                color_p,
-                (act_x2 - act_x1 + 1) * sizeof(my_fb[0]));
-        color_p += x2 - x1 + 1;    /*Skip the parts out of the screen*/
-    }
-#else
-
-    x1_flush = act_x1;
-    y1_flush = act_y1;
-    x2_flush = act_x2;
-    y2_fill = act_y2;
-    y_fill_act = act_y1;
-    buf_to_flush = color_p;
-
-
-    /*##-7- Start the DMA transfer using the interrupt mode #*/
-    /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
-    /* Enable All the DMA interrupts */
-    if(HAL_DMA_Start_IT(&DmaHandle,(uint32_t)buf_to_flush, (uint32_t)&my_fb[y_fill_act * TFT_HOR_RES + x1_flush],
-                        (x2_flush - x1_flush + 1)) != HAL_OK)
-    {
-        while(1)
-        {
-        }
-    }
-
-#endif
-}
-
-
-/* Write a pixel array (called 'map') to the a specific area on the display
- * This function is required only when LV_VDB_SIZE == 0 in lv_conf.h*/
-static void ex_disp_fill(int32_t x1, int32_t y1, int32_t x2, int32_t y2,  lv_color_t color)
-{
-    /*Return if the area is out the screen*/
-    if(x2 < 0) return;
-    if(y2 < 0) return;
-    if(x1 > TFT_HOR_RES - 1) return;
-    if(y1 > TFT_VER_RES - 1) return;
-
-    /*Truncate the area to the screen*/
-    int32_t act_x1 = x1 < 0 ? 0 : x1;
-    int32_t act_y1 = y1 < 0 ? 0 : y1;
-    int32_t act_x2 = x2 > TFT_HOR_RES - 1 ? TFT_HOR_RES - 1 : x2;
-    int32_t act_y2 = y2 > TFT_VER_RES - 1 ? TFT_VER_RES - 1 : y2;
-
-    uint32_t x;
-    uint32_t y;
-
-    /*Fill the remaining area*/
-    for(x = act_x1; x <= act_x2; x++) {
-        for(y = act_y1; y <= act_y2; y++) {
-            my_fb[y * TFT_HOR_RES + x] = color.full;
-        }
-    }
-}
-
-#if USE_LV_GPU != 0
+#if LV_USE_GPU != 0
 
 /**
  * Copy pixels to destination memory using opacity
@@ -319,11 +277,8 @@ static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
 
     Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
     HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
-#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR <= 1
-    HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to24(color), (uint32_t) dest, (uint32_t)dest, length, 1);
-#else
+
     HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest, (uint32_t)dest, length, 1);
-#endif
 }
 
 #endif
@@ -337,7 +292,7 @@ static void LCD_MspInit(void)
 
     /* Enable the LTDC and DMA2D clocks */
     __HAL_RCC_LTDC_CLK_ENABLE();
-#if USE_LV_GPU != 0
+#if LV_USE_GPU != 0
     __HAL_RCC_DMA2D_CLK_ENABLE();
 #endif
     /* Enable GPIOs clock */
@@ -568,7 +523,7 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
     y_fill_act ++;
 
     if(y_fill_act > y2_fill) {
-        lv_flush_ready();
+        lv_disp_flush_ready(&our_disp->driver);
     } else {
     	uint32_t length = (x2_flush - x1_flush + 1);
         buf_to_flush += x2_flush - x1_flush + 1;
@@ -609,7 +564,7 @@ void CPY_BUF_DMA_STREAM_IRQHANDLER(void)
 }
 
 
-#if USE_LV_GPU != 0
+#if LV_USE_GPU != 0
 
 static void Error_Handler(void)
 {

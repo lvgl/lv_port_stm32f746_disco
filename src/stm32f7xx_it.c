@@ -40,7 +40,7 @@
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx_hal_cortex.h"
 
-#include "lvgl/lv_hal/lv_hal_tick.h"
+#include "lvgl/src/lv_hal/lv_hal_tick.h"
 /** @addtogroup STM32F7xx_HAL_Applications
   * @{
   */
