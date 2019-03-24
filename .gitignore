@@ -50,3 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Miscellaneous
+Debug/stm32f746_discovery_no_os.bin
