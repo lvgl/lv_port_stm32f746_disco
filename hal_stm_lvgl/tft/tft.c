@@ -9,6 +9,7 @@
 #include "lv_conf.h"
 #include "lvgl/lvgl.h"
 #include <string.h>
+#include <stdlib.h>
 
 #include "tft.h"
 #include "stm32f7xx.h"
@@ -63,8 +64,8 @@
 /*These 3 functions are needed by LittlevGL*/
 static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p);
 #if LV_USE_GPU
-static void gpu_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa);
-static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color);
+static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa);
+static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width, const lv_area_t * fill_area, lv_color_t color);
 #endif
 
 static uint8_t LCD_Init(void);
@@ -169,10 +170,10 @@ void tft_init(void)
 	/*Optionally add functions to access the GPU. (Only in buffered mode, LV_VDB_SIZE != 0)*/
 
 	/*Blend two color array using opacity*/
-	disp_drv.mem_blend = gpu_mem_blend;
+	disp_drv.mem_blend_cb = gpu_mem_blend;
 
 	/*Fill a memory array with a color*/
-	disp_drv.mem_fill = gpu_mem_fill;
+	disp_drv.mem_fill_cb = gpu_mem_fill;
 #endif
 
 	/*Finally register the driver*/
@@ -238,7 +239,7 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
  * @param length number of pixels in 'src'
  * @param opa opacity (0, OPA_TRANSP: transparent ... 255, OPA_COVER, fully cover)
  */
-static void gpu_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa)
+static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa)
 {
     /*Wait for the previous operation*/
     HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
@@ -262,7 +263,8 @@ static void gpu_mem_blend(lv_color_t * dest, const lv_color_t * src, uint32_t le
  * @param length number of pixels in 'src'
  * @param opa opacity (0, OPA_TRANSP: transparent ... 255, OPA_COVER, fully cover)
  */
-static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
+static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width,
+        const lv_area_t * fill_area, lv_color_t color)
 {
     /*Wait for the previous operation*/
     HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
@@ -278,7 +280,9 @@ static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
     Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
     HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
 
-    HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest, (uint32_t)dest, length, 1);
+    dest_buf += dest_width * fill_area->y1; /*Go to the first line*/
+
+    HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf, (uint32_t)dest_buf, lv_area_get_width(), 1);
 }
 
 #endif
