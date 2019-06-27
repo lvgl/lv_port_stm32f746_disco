@@ -170,10 +170,10 @@ void tft_init(void)
 	/*Optionally add functions to access the GPU. (Only in buffered mode, LV_VDB_SIZE != 0)*/
 
 	/*Blend two color array using opacity*/
-	disp_drv.mem_blend_cb = gpu_mem_blend;
+	disp_drv.gpu_blend_cb = gpu_mem_blend;
 
 	/*Fill a memory array with a color*/
-	disp_drv.mem_fill_cb = gpu_mem_fill;
+	disp_drv.gpu_fill_cb = gpu_mem_fill;
 #endif
 
 	/*Finally register the driver*/
@@ -241,19 +241,19 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
  */
 static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa)
 {
-    /*Wait for the previous operation*/
-    HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
-    Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
-    /* DMA2D Initialization */
-    if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
-    {
-        /* Initialization Error */
-        while(1);
-    }
+	/*Wait for the previous operation*/
+	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
+	Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
+	/* DMA2D Initialization */
+	if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
+	{
+		/* Initialization Error */
+		while(1);
+	}
 
-    Dma2dHandle.LayerCfg[1].InputAlpha = opa;
-    HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
-    HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) src, (uint32_t) dest, (uint32_t)dest, length, 1);
+	Dma2dHandle.LayerCfg[1].InputAlpha = opa;
+	HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
+	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) src, (uint32_t) dest, (uint32_t)dest, length, 1);
 }
 
 /**
@@ -266,23 +266,33 @@ static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_c
 static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width,
         const lv_area_t * fill_area, lv_color_t color)
 {
-    /*Wait for the previous operation*/
-    HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
+	/*Wait for the previous operation*/
+	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 
-    Dma2dHandle.Init.Mode = DMA2D_R2M;
-    /* DMA2D Initialization */
-    if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
-    {
-        /* Initialization Error */
-        while(1);
-    }
+   Dma2dHandle.Init.Mode         = DMA2D_R2M;
+   /* DMA2D Initialization */
+   if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
+   {
+     /* Initialization Error */
+     while(1);
+   }
 
-    Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
-    HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
+   Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
+   HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
 
-    dest_buf += dest_width * fill_area->y1; /*Go to the first line*/
+   lv_color_t * dest_buf_ofs = dest_buf;
 
-    HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf, (uint32_t)dest_buf, lv_area_get_width(), 1);
+   dest_buf_ofs += dest_width * fill_area->y1;
+   dest_buf_ofs += fill_area->x1;
+   lv_coord_t area_w = lv_area_get_width(fill_area);
+
+   uint32_t i;
+   for(i = fill_area->y1; i <= fill_area->y2; i++) {
+	   /*Wait for the previous operation*/
+	   HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
+	   HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf_ofs, (uint32_t)dest_buf_ofs, area_w, 1);
+	   dest_buf_ofs += dest_width;
+   }
 }
 
 #endif
