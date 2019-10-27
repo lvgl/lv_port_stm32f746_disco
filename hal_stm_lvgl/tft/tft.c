@@ -498,7 +498,7 @@ static void DMA_Config(void)
     DmaHandle.Init.PeriphInc = DMA_PINC_ENABLE;                     /* Peripheral increment mode Enable */
     DmaHandle.Init.MemInc = DMA_MINC_ENABLE;                        /* Memory increment mode Enable     */
     DmaHandle.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;   /* Peripheral data alignment : 16bit */
-    DmaHandle.Init.MemDataAlignment = DMA_PDATAALIGN_HALFWORD;      /* memory data alignment : 16bit     */
+    DmaHandle.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;      /* memory data alignment : 16bit     */
     DmaHandle.Init.Mode = DMA_NORMAL;                               /* Normal DMA mode                  */
     DmaHandle.Init.Priority = DMA_PRIORITY_HIGH;                    /* priority level : high            */
     DmaHandle.Init.FIFOMode = DMA_FIFOMODE_ENABLE;                  /* FIFO mode enabled                */
