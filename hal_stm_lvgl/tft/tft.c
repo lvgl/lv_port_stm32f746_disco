@@ -143,8 +143,9 @@ void tft_init(void)
    /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
 
 	static lv_disp_buf_t disp_buf_1;
-	static lv_color_t buf1_1[LV_HOR_RES_MAX * 100];                      /*A buffer for 10 rows*/
-	lv_disp_buf_init(&disp_buf_1, buf1_1, NULL, LV_HOR_RES_MAX * 100);   /*Initialize the display buffer*/
+	static lv_color_t buf1_1[LV_HOR_RES_MAX * 68];                      /*A buffer for 10 rows*/
+	static lv_color_t buf1_2[LV_HOR_RES_MAX * 68];                      /*A buffer for 10 rows*/
+	lv_disp_buf_init(&disp_buf_1, buf1_1, buf1_2, LV_HOR_RES_MAX * 68);   /*Initialize the display buffer*/
 
 
 	/*-----------------------------------
@@ -269,7 +270,11 @@ static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coor
 	/*Wait for the previous operation*/
 	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 
+   lv_coord_t area_w = lv_area_get_width(fill_area);
+   lv_coord_t area_h = lv_area_get_height(fill_area);
+
    Dma2dHandle.Init.Mode         = DMA2D_R2M;
+   Dma2dHandle.Init.OutputOffset = dest_width - area_w;
    /* DMA2D Initialization */
    if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
    {
@@ -284,15 +289,8 @@ static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coor
 
    dest_buf_ofs += dest_width * fill_area->y1;
    dest_buf_ofs += fill_area->x1;
-   lv_coord_t area_w = lv_area_get_width(fill_area);
 
-   uint32_t i;
-   for(i = fill_area->y1; i <= fill_area->y2; i++) {
-	   /*Wait for the previous operation*/
-	   HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
-	   HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf_ofs, (uint32_t)dest_buf_ofs, area_w, 1);
-	   dest_buf_ofs += dest_width;
-   }
+   HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf_ofs, (uint32_t)dest_buf_ofs, area_w, area_h);
 }
 
 #endif
