@@ -215,6 +215,8 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     y_fill_act = act_y1;
     buf_to_flush = color_p;
 
+	SCB_CleanInvalidateDCache();
+	SCB_InvalidateICache();
     /*##-7- Start the DMA transfer using the interrupt mode #*/
     /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
     /* Enable All the DMA interrupts */
@@ -244,6 +246,8 @@ static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_c
 {
 	/*Wait for the previous operation*/
 	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
+
+	SCB_CleanInvalidateDCache();
 	Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
 	/* DMA2D Initialization */
 	if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
@@ -270,6 +274,7 @@ static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coor
 	/*Wait for the previous operation*/
 	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 
+	SCB_CleanInvalidateDCache();
    lv_coord_t area_w = lv_area_get_width(fill_area);
    lv_coord_t area_h = lv_area_get_height(fill_area);
 
@@ -535,6 +540,8 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
     y_fill_act ++;
 
     if(y_fill_act > y2_fill) {
+    	SCB_CleanInvalidateDCache();
+    	SCB_InvalidateICache();
         lv_disp_flush_ready(&our_disp->driver);
     } else {
     	uint32_t length = (x2_flush - x1_flush + 1);

@@ -17,6 +17,11 @@ int main(void)
     /* Configure the system clock to 216 MHz */
     SystemClock_Config();
 
+    /* Enable I-Cache */
+    SCB_EnableICache();
+
+    /* Enable D-Cache */
+    SCB_EnableDCache();
     /*Start up indication*/
 //    BSP_LED_Init(LED1);
     uint8_t i;
