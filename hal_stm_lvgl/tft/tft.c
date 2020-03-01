@@ -259,6 +259,8 @@ static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_c
 	Dma2dHandle.LayerCfg[1].InputAlpha = opa;
 	HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
 	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) src, (uint32_t) dest, (uint32_t)dest, length, 1);
+
+	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 }
 
 /**
@@ -296,6 +298,8 @@ static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coor
    dest_buf_ofs += fill_area->x1;
 
    HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf_ofs, (uint32_t)dest_buf_ofs, area_w, area_h);
+
+	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 }
 
 #endif
