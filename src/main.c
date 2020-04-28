@@ -5,13 +5,19 @@
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
 
-#include "lv_examples/lv_apps/demo/demo.h"
+#include "lv_examples/src/lv_demo_benchmark/lv_demo_benchmark.h"
 
 static void SystemClock_Config(void);
 
 
 int main(void)
 {
+	  /* Enable I-Cache */
+	  SCB_EnableICache();
+
+	  /* Enable D-Cache */
+	  SCB_EnableDCache();
+
     HAL_Init();
 
     /* Configure the system clock to 216 MHz */
@@ -30,8 +36,10 @@ int main(void)
     tft_init();
     touchpad_init();
 
+    lv_demo_benchmark();
 
-    demo_create();
+
+    //demo_create();
     while (1)
     {
         HAL_Delay(5);

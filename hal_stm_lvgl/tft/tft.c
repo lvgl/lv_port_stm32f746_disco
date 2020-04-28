@@ -109,6 +109,7 @@ static int32_t            y_fill_act;
 static const lv_color_t * buf_to_flush;
 
 static lv_disp_t *our_disp = NULL;
+
 /**********************
  *      MACROS
  **********************/
@@ -136,6 +137,8 @@ void tft_init(void)
 #if LV_USE_GPU != 0
     DMA2D_Config();
 #endif
+
+#if 1
    /*-----------------------------
 	* Create a buffer for drawing
 	*----------------------------*/
@@ -143,8 +146,8 @@ void tft_init(void)
    /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
 
 	static lv_disp_buf_t disp_buf_1;
-	static lv_color_t buf1_1[LV_HOR_RES_MAX * 10];                      /*A buffer for 10 rows*/
-	lv_disp_buf_init(&disp_buf_1, buf1_1, NULL, LV_HOR_RES_MAX * 10);   /*Initialize the display buffer*/
+	static lv_color_t buf1_1[LV_HOR_RES_MAX * LV_VER_RES_MAX / 2];                      /*A buffer for 10 rows*/
+	lv_disp_buf_init(&disp_buf_1, buf1_1, NULL, LV_HOR_RES_MAX * LV_VER_RES_MAX / 2);   /*Initialize the display buffer*/
 
 
 	/*-----------------------------------
@@ -178,6 +181,33 @@ void tft_init(void)
 
 	/*Finally register the driver*/
 	our_disp = lv_disp_drv_register(&disp_drv);
+#endif
+	Dma2dHandle.Init.Mode         = DMA2D_R2M;
+   /* DMA2D Initialization */
+   HAL_DMA2D_Init(&Dma2dHandle);
+
+
+   uint32_t prev_tick = HAL_GetTick();
+   Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
+   HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
+#if 0
+#define NUM_TESTS 100
+#define XDELTA 15
+#define YDELTA 17
+   for(int i = 0; i < NUM_TESTS; i++) {
+	   for(int y = 0; y < 272; y += YDELTA) {
+		   for(int x = 0; x < 480; x += XDELTA) {
+			   uint32_t fba = ((uint32_t) my_fb) + (y*480*2) + (x*2);
+			   HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) (i & 1 ? 0xFFFF0000 : 0xFF00FF00), fba, fba, XDELTA, YDELTA);
+			   HAL_DMA2D_PollForTransfer(&Dma2dHandle, HAL_MAX_DELAY);
+		   }
+	   }
+   }
+
+   uint32_t time = (HAL_GetTick()-prev_tick);
+   lv_obj_t * label = lv_label_create(lv_scr_act(), NULL);
+   lv_label_set_text_fmt(label, "%u (%u)", time, time / NUM_TESTS);
+#endif
 }
 
 /**********************
