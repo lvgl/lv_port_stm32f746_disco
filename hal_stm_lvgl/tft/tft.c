@@ -143,8 +143,8 @@ void tft_init(void)
    /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
 
 	static lv_disp_buf_t disp_buf_1;
-	static lv_color_t buf1_1[LV_HOR_RES_MAX * 10];                      /*A buffer for 10 rows*/
-	lv_disp_buf_init(&disp_buf_1, buf1_1, NULL, LV_HOR_RES_MAX * 10);   /*Initialize the display buffer*/
+	static lv_color_t buf1_1[LV_HOR_RES_MAX * LV_VER_RES_MAX / 2];                      /*A buffer for 10 rows*/
+	lv_disp_buf_init(&disp_buf_1, buf1_1, NULL, LV_HOR_RES_MAX * LV_VER_RES_MAX / 2);   /*Initialize the display buffer*/
 
 
 	/*-----------------------------------
@@ -222,6 +222,10 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
 #if LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
     length *= 2; /* STM32 DMA uses 16-bit chunks so multiply by 2 for 32-bit color */
 #endif
+    /* Invalidate D-Cache */
+    if(SCB->CCR & (uint32_t)SCB_CCR_DC_Msk) {
+    	        SCB_CleanInvalidateDCache();
+    }
     err = HAL_DMA_Start_IT(&DmaHandle,(uint32_t)buf_to_flush, (uint32_t)&my_fb[y_fill_act * TFT_HOR_RES + x1_flush],
              length);
     if(err != HAL_OK)
@@ -241,6 +245,10 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
  */
 static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa)
 {
+	/* Invalidate D-Cache */
+	if(SCB->CCR & (uint32_t)SCB_CCR_DC_Msk) {
+				SCB_CleanInvalidateDCache();
+	}
 	/*Wait for the previous operation*/
 	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 	Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
@@ -266,6 +274,10 @@ static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_c
 static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width,
         const lv_area_t * fill_area, lv_color_t color)
 {
+	/* Invalidate D-Cache */
+	if(SCB->CCR & (uint32_t)SCB_CCR_DC_Msk) {
+				SCB_CleanInvalidateDCache();
+	}
 	/*Wait for the previous operation*/
 	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 

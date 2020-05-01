@@ -53,3 +53,4 @@ dkms.conf
 
 # Miscellaneous
 Debug/stm32f746_discovery_no_os.bin
+Debug/*.list
