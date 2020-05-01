@@ -143,9 +143,10 @@ void tft_init(void)
    /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
 
 	static lv_disp_buf_t disp_buf_1;
-	static lv_color_t buf1_1[LV_HOR_RES_MAX * LV_VER_RES_MAX / 2];                      /*A buffer for 10 rows*/
-	lv_disp_buf_init(&disp_buf_1, buf1_1, NULL, LV_HOR_RES_MAX * LV_VER_RES_MAX / 2);   /*Initialize the display buffer*/
 
+	static lv_color_t buf1_1[LV_HOR_RES_MAX * 68];                      /*A buffer for 10 rows*/
+	static lv_color_t buf1_2[LV_HOR_RES_MAX * 68];                      /*A buffer for 10 rows*/
+	lv_disp_buf_init(&disp_buf_1, buf1_1, buf1_2, LV_HOR_RES_MAX * 68);   /*Initialize the display buffer*/
 
 	/*-----------------------------------
 	* Register the display in LittlevGL
@@ -214,6 +215,8 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     y_fill_act = act_y1;
     buf_to_flush = color_p;
 
+	SCB_CleanInvalidateDCache();
+	SCB_InvalidateICache();
     /*##-7- Start the DMA transfer using the interrupt mode #*/
     /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
     /* Enable All the DMA interrupts */
@@ -247,10 +250,11 @@ static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_c
 {
 	/* Invalidate D-Cache */
 	if(SCB->CCR & (uint32_t)SCB_CCR_DC_Msk) {
-				SCB_CleanInvalidateDCache();
+		SCB_CleanInvalidateDCache();
 	}
 	/*Wait for the previous operation*/
 	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
+
 	Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
 	/* DMA2D Initialization */
 	if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
@@ -262,6 +266,8 @@ static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_c
 	Dma2dHandle.LayerCfg[1].InputAlpha = opa;
 	HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
 	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) src, (uint32_t) dest, (uint32_t)dest, length, 1);
+
+	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 }
 
 /**
@@ -281,7 +287,12 @@ static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coor
 	/*Wait for the previous operation*/
 	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 
+	SCB_CleanInvalidateDCache();
+   lv_coord_t area_w = lv_area_get_width(fill_area);
+   lv_coord_t area_h = lv_area_get_height(fill_area);
+
    Dma2dHandle.Init.Mode         = DMA2D_R2M;
+   Dma2dHandle.Init.OutputOffset = dest_width - area_w;
    /* DMA2D Initialization */
    if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
    {
@@ -296,15 +307,10 @@ static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coor
 
    dest_buf_ofs += dest_width * fill_area->y1;
    dest_buf_ofs += fill_area->x1;
-   lv_coord_t area_w = lv_area_get_width(fill_area);
 
-   uint32_t i;
-   for(i = fill_area->y1; i <= fill_area->y2; i++) {
-	   /*Wait for the previous operation*/
-	   HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
-	   HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf_ofs, (uint32_t)dest_buf_ofs, area_w, 1);
-	   dest_buf_ofs += dest_width;
-   }
+   HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf_ofs, (uint32_t)dest_buf_ofs, area_w, area_h);
+
+	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
 }
 
 #endif
@@ -549,6 +555,8 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
     y_fill_act ++;
 
     if(y_fill_act > y2_fill) {
+    	SCB_CleanInvalidateDCache();
+    	SCB_InvalidateICache();
         lv_disp_flush_ready(&our_disp->driver);
     } else {
     	uint32_t length = (x2_flush - x1_flush + 1);
