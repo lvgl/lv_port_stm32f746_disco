@@ -9,3 +9,4 @@
 /objects.mk
 /src/
 /startup/
+/subdir.mk
