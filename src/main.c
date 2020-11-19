@@ -5,10 +5,9 @@
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
 
-#include "lv_examples/src/lv_ex_demos/lv_demo_widgets/lv_demo_widgets.h"
+#include "lv_examples/lv_examples.h"
 
 static void SystemClock_Config(void);
-
 
 int main(void)
 {
@@ -22,28 +21,20 @@ int main(void)
 
     /* Enable D-Cache */
     SCB_EnableDCache();
-    /*Start up indication*/
-//    BSP_LED_Init(LED1);
-    uint8_t i;
-    for (i = 0; i < 8; i++) {
-//        BSP_LED_Toggle(LED1);
-        HAL_Delay(50);
-    }
 
     lv_init();
 
     tft_init();
     touchpad_init();
 
-
     lv_demo_widgets();
+
     while (1)
     {
         HAL_Delay(5);
         lv_task_handler();
     }
 }
-
 
 static void SystemClock_Config(void)
 {
