@@ -16,8 +16,8 @@
 /*********************
  *      DEFINES
  *********************/
-#define TFT_HOR_RES 480
-#define TFT_VER_RES 272
+#define TFT_HOR_RES 272
+#define TFT_VER_RES 480
 
 /**********************
  *      TYPEDEFS

@@ -143,9 +143,9 @@ void tft_init(void)
    /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
 
 	static lv_disp_buf_t disp_buf_1;
-	static lv_color_t buf1_1[LV_HOR_RES_MAX * 68];                      /*A buffer for 10 rows*/
-	static lv_color_t buf1_2[LV_HOR_RES_MAX * 68];                      /*A buffer for 10 rows*/
-	lv_disp_buf_init(&disp_buf_1, buf1_1, buf1_2, LV_HOR_RES_MAX * 68);   /*Initialize the display buffer*/
+	static lv_color_t buf1_1[LV_HOR_RES_MAX * 34];
+	static lv_color_t buf1_2[LV_HOR_RES_MAX * 34];
+	lv_disp_buf_init(&disp_buf_1, buf1_1, buf1_2, LV_HOR_RES_MAX * 34);   /*Initialize the display buffer*/
 
 
 	/*-----------------------------------
@@ -167,15 +167,6 @@ void tft_init(void)
 	/*Set a display buffer*/
 	disp_drv.buffer = &disp_buf_1;
 
-#if LV_USE_GPU
-	/*Optionally add functions to access the GPU. (Only in buffered mode, LV_VDB_SIZE != 0)*/
-
-	/*Blend two color array using opacity*/
-	disp_drv.gpu_blend_cb = gpu_mem_blend;
-
-	/*Fill a memory array with a color*/
-	disp_drv.gpu_fill_cb = gpu_mem_fill;
-#endif
 
 	/*Finally register the driver*/
 	our_disp = lv_disp_drv_register(&disp_drv);
@@ -233,76 +224,6 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     }
 }
 
-#if LV_USE_GPU != 0
-
-/**
- * Copy pixels to destination memory using opacity
- * @param dest a memory address. Copy 'src' here.
- * @param src pointer to pixel map. Copy it to 'dest'.
- * @param length number of pixels in 'src'
- * @param opa opacity (0, OPA_TRANSP: transparent ... 255, OPA_COVER, fully cover)
- */
-static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa)
-{
-	/*Wait for the previous operation*/
-	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
-
-	SCB_CleanInvalidateDCache();
-	Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
-	/* DMA2D Initialization */
-	if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
-	{
-		/* Initialization Error */
-		while(1);
-	}
-
-	Dma2dHandle.LayerCfg[1].InputAlpha = opa;
-	HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
-	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) src, (uint32_t) dest, (uint32_t)dest, length, 1);
-
-	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
-}
-
-/**
- * Copy pixels to destination memory using opacity
- * @param dest a memory address. Copy 'src' here.
- * @param src pointer to pixel map. Copy it to 'dest'.
- * @param length number of pixels in 'src'
- * @param opa opacity (0, OPA_TRANSP: transparent ... 255, OPA_COVER, fully cover)
- */
-static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width,
-        const lv_area_t * fill_area, lv_color_t color)
-{
-	/*Wait for the previous operation*/
-	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
-
-	SCB_CleanInvalidateDCache();
-   lv_coord_t area_w = lv_area_get_width(fill_area);
-   lv_coord_t area_h = lv_area_get_height(fill_area);
-
-   Dma2dHandle.Init.Mode         = DMA2D_R2M;
-   Dma2dHandle.Init.OutputOffset = dest_width - area_w;
-   /* DMA2D Initialization */
-   if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
-   {
-     /* Initialization Error */
-     while(1);
-   }
-
-   Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
-   HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
-
-   lv_color_t * dest_buf_ofs = dest_buf;
-
-   dest_buf_ofs += dest_width * fill_area->y1;
-   dest_buf_ofs += fill_area->x1;
-
-   HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest_buf_ofs, (uint32_t)dest_buf_ofs, area_w, area_h);
-
-	HAL_DMA2D_PollForTransfer(&Dma2dHandle, 100);
-}
-
-#endif
 
 /**
  * @brief Configure LCD pins, and peripheral clocks.
