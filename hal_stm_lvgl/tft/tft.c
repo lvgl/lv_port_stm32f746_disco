@@ -21,6 +21,7 @@
 /*********************
  *      DEFINES
  *********************/
+#define BUF_SIZE (LV_HOR_RES_MAX * LV_VER_RES_MAX / 5)
 
 #if LV_COLOR_DEPTH != 16 && LV_COLOR_DEPTH != 24 && LV_COLOR_DEPTH != 32
 #error LV_COLOR_DEPTH must be 16, 24, or 32
@@ -62,11 +63,7 @@
  **********************/
 
 /*These 3 functions are needed by LittlevGL*/
-static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p);
-#if LV_USE_GPU
-static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa);
-static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width, const lv_area_t * fill_area, lv_color_t color);
-#endif
+static void disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p);
 
 static uint8_t LCD_Init(void);
 static void LCD_LayerRgb565Init(uint32_t FB_Address);
@@ -143,10 +140,9 @@ void tft_init(void)
    /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
 
 	static lv_disp_buf_t disp_buf_1;
-	static lv_color_t buf1_1[LV_HOR_RES_MAX * 34];
-	static lv_color_t buf1_2[LV_HOR_RES_MAX * 34];
-	lv_disp_buf_init(&disp_buf_1, buf1_1, buf1_2, LV_HOR_RES_MAX * 34);   /*Initialize the display buffer*/
-
+	static lv_color_t buf1_1[BUF_SIZE];
+	static lv_color_t buf1_2[BUF_SIZE];
+	lv_disp_buf_init(&disp_buf_1, buf1_1, buf1_2, BUF_SIZE);   /*Initialize the display buffer*/
 
 	/*-----------------------------------
 	* Register the display in LittlevGL
@@ -162,7 +158,7 @@ void tft_init(void)
 	disp_drv.ver_res = 272;
 
 	/*Used to copy the buffer's content to the display*/
-	disp_drv.flush_cb = ex_disp_flush;
+	disp_drv.flush_cb = disp_flush;
 
 	/*Set a display buffer*/
 	disp_drv.buffer = &disp_buf_1;
@@ -180,7 +176,7 @@ void tft_init(void)
  * You can use DMA or any hardware acceleration to do this operation in the background but
  * 'lv_flush_ready()' has to be called when finished
  * This function is required only when LV_VDB_SIZE != 0 in lv_conf.h*/
-static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p)
+static void disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p)
 {
 	int32_t x1 = area->x1;
 	int32_t x2 = area->x2;
@@ -198,6 +194,17 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     int32_t act_y1 = y1 < 0 ? 0 : y1;
     int32_t act_x2 = x2 > TFT_HOR_RES - 1 ? TFT_HOR_RES - 1 : x2;
     int32_t act_y2 = y2 > TFT_VER_RES - 1 ? TFT_VER_RES - 1 : y2;
+
+    uint32_t w = lv_area_get_width(area);
+//    uint32_t y;
+//    for(y = area->y1; y <= area->y2 && y < drv->ver_res; y++) {
+//        memcpy(&my_fb[y * TFT_HOR_RES + area->x1], color_p, w * sizeof(lv_color_t));
+//        color_p += w;
+//    }
+//
+//    lv_disp_flush_ready(drv);
+//    return;
+
 
     x1_flush = act_x1;
     y1_flush = act_y1;
