@@ -25,7 +25,8 @@ jobs:
     - name: Build
       working-directory: build
       run: make -j $(nproc)
-    - uses: actions/upload-artifact@v2
+    - uses: eine/tip@master
       with:
-        name: STM32F746.bin
-        path: build/lv_stm32f746.bin
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          build/lv_stm32f746.bin
