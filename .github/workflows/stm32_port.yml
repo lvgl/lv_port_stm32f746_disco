@@ -1,0 +1,31 @@
+name: Build project
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: arm-none-eabi-gcc
+      uses: fiam/arm-none-eabi-gcc@v1
+      with:
+        release: '9-2019-q4' # The arm-none-eabi-gcc release to use.
+    - name: Update submodules
+      run: git submodule update --init --recursive  
+    - name: Create build directory
+      run: mkdir build
+    - name: Configure
+      working-directory: build
+      run: cmake .. -DCMAKE_BUILD_TYPE=Release
+    - name: Build
+      working-directory: build
+      run: make -j $(nproc)
+    - uses: actions/upload-artifact@v2
+      with:
+        name: STM32F746.bin
+      path: build/lv_stm32f746.bin
