@@ -91,7 +91,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="CMSIS|Utilities|HAL_Driver|hal_stm_lvgl|inc|lv_examples|lvgl|src|startup" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+						<entry excluding="build|ide/iar/startup_stm32f746xx.s|CMSIS|Utilities|HAL_Driver|hal_stm_lvgl|inc|lv_examples|lvgl|src|startup" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="CMSIS"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="HAL_Driver"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Utilities"/>
