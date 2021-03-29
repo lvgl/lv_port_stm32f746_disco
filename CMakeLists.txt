@@ -55,7 +55,7 @@ FILE(GLOB_RECURSE HAL_Sources HAL_Driver/Src/*.c
     Utilities/STM32746G-Discovery/stm32746g_discovery_sdram.c
 )
 
-FILE(GLOB_RECURSE LVGL_Sources lvgl/src/*.c lv_examples/*.c hal_stm_lvgl/*.c)
+FILE(GLOB_RECURSE LVGL_Sources CONFIGURE_DEPENDS lvgl/src/*.c lv_examples/*.c hal_stm_lvgl/*.c)
 
 add_definitions(
     -DSTM32
