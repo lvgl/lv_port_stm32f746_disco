@@ -5,7 +5,7 @@ This is LVGL ported to [STM32F746G-DISCO](https://www.st.com/en/evaluation-tools
 
 ## Try it with just a few clicks!
 
-1. Download [lv_stm32f746.bin](https://github.com/lvgl/lv_port_stm32f746_disco/releases/download/tip/lv_stm32f746.bin).
+1. Download [lv_stm32f746.bin.zip](https://nightly.link/lvgl/lv_port_stm32f746_disco/workflows/stm32_port/master/lv_stm32f746.bin.zip) and extract the binary inside.
 2. Plug in the Discovery board.
 3. Copy the binary to the `DIS_F746NG` drive provided by the board's USB interface.
 
