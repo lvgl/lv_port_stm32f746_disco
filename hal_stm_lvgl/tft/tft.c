@@ -63,10 +63,7 @@
 
 /*These 3 functions are needed by LittlevGL*/
 static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p);
-#if LV_USE_GPU
-static void gpu_mem_blend(lv_disp_drv_t *disp_drv, lv_color_t * dest, const lv_color_t * src, uint32_t length, lv_opa_t opa);
-static void gpu_mem_fill(lv_disp_drv_t *disp_drv, lv_color_t * dest_buf, lv_coord_t dest_width, const lv_area_t * fill_area, lv_color_t color);
-#endif
+static void ex_disp_clean_dcache(lv_disp_drv_t *drv);
 
 static uint8_t LCD_Init(void);
 static void LCD_LayerRgb565Init(uint32_t FB_Address);
@@ -76,17 +73,11 @@ static void DMA_Config(void);
 static void DMA_TransferComplete(DMA_HandleTypeDef *han);
 static void DMA_TransferError(DMA_HandleTypeDef *han);
 
-#if LV_USE_GPU
-static void DMA2D_Config(void);
-#endif
-
 /**********************
  *  STATIC VARIABLES
  **********************/
-#if LV_USE_GPU
-static DMA2D_HandleTypeDef Dma2dHandle;
-#endif
 static LTDC_HandleTypeDef  hLtdcHandler;
+static lv_disp_drv_t disp_drv;
 
 #if LV_COLOR_DEPTH == 16
 typedef uint16_t uintpixel_t;
@@ -133,26 +124,22 @@ void tft_init(void)
 
     DMA_Config();
 
-#if LV_USE_GPU != 0
-    DMA2D_Config();
-#endif
    /*-----------------------------
 	* Create a buffer for drawing
 	*----------------------------*/
 
    /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
 
-	static lv_disp_buf_t disp_buf_1;
-	static lv_color_t buf1_1[LV_HOR_RES_MAX * 68];
-	static lv_color_t buf1_2[LV_HOR_RES_MAX * 68];
-	lv_disp_buf_init(&disp_buf_1, buf1_1, buf1_2, LV_HOR_RES_MAX * 68);   /*Initialize the display buffer*/
+	static lv_disp_draw_buf_t disp_buf_1;
+	static lv_color_t buf1_1[TFT_HOR_RES * 68];
+	static lv_color_t buf1_2[TFT_HOR_RES * 68];
+	lv_disp_draw_buf_init(&disp_buf_1, buf1_1, buf1_2, TFT_HOR_RES * 68);   /*Initialize the display buffer*/
 
 
 	/*-----------------------------------
 	* Register the display in LittlevGL
 	*----------------------------------*/
 
-	lv_disp_drv_t disp_drv;                         /*Descriptor of a display driver*/
 	lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
 
 	/*Set up the functions to access to your display*/
@@ -163,9 +150,10 @@ void tft_init(void)
 
 	/*Used to copy the buffer's content to the display*/
 	disp_drv.flush_cb = ex_disp_flush;
+	disp_drv.clean_dcache_cb = ex_disp_clean_dcache;
 
 	/*Set a display buffer*/
-	disp_drv.buffer = &disp_buf_1;
+	disp_drv.draw_buf = &disp_buf_1;
 
 
 	/*Finally register the driver*/
@@ -206,7 +194,7 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     y_fill_act = act_y1;
     buf_to_flush = color_p;
 
-	SCB_CleanInvalidateDCache();
+	//SCB_CleanInvalidateDCache();
 	SCB_InvalidateICache();
     /*##-7- Start the DMA transfer using the interrupt mode #*/
     /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
@@ -224,6 +212,11 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     }
 }
 
+static void ex_disp_clean_dcache(lv_disp_drv_t *drv)
+{
+    //SCB_CleanInvalidateDCache();
+}
+
 
 /**
  * @brief Configure LCD pins, and peripheral clocks.
@@ -234,9 +227,7 @@ static void LCD_MspInit(void)
 
     /* Enable the LTDC and DMA2D clocks */
     __HAL_RCC_LTDC_CLK_ENABLE();
-#if LV_USE_GPU != 0
     __HAL_RCC_DMA2D_CLK_ENABLE();
-#endif
     /* Enable GPIOs clock */
     __HAL_RCC_GPIOE_CLK_ENABLE();
     __HAL_RCC_GPIOG_CLK_ENABLE();
@@ -467,7 +458,7 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
     if(y_fill_act > y2_fill) {
     	SCB_CleanInvalidateDCache();
     	SCB_InvalidateICache();
-        lv_disp_flush_ready(&our_disp->driver);
+        lv_disp_flush_ready(&disp_drv);
     } else {
     	uint32_t length = (x2_flush - x1_flush + 1);
         buf_to_flush += x2_flush - x1_flush + 1;
@@ -506,100 +497,3 @@ void CPY_BUF_DMA_STREAM_IRQHANDLER(void)
     /* Check the interrupt and clear flag */
     HAL_DMA_IRQHandler(&DmaHandle);
 }
-
-
-#if LV_USE_GPU != 0
-
-static void Error_Handler(void)
-{
-    while(1)
-    {
-    }
-}
-/**
-  * @brief  DMA2D Transfer completed callback
-  * @param  hdma2d: DMA2D handle.
-  * @note   This example shows a simple way to report end of DMA2D transfer, and
-  *         you can add your own implementation.
-  * @retval None
-  */
-static void DMA2D_TransferComplete(DMA2D_HandleTypeDef *hdma2d)
-{
-
-}
-
-/**
-  * @brief  DMA2D error callbacks
-  * @param  hdma2d: DMA2D handle
-  * @note   This example shows a simple way to report DMA2D transfer error, and you can
-  *         add your own implementation.
-  * @retval None
-  */
-static void DMA2D_TransferError(DMA2D_HandleTypeDef *hdma2d)
-{
-
-}
-
-/**
-  * @brief DMA2D configuration.
-  * @note  This function Configure the DMA2D peripheral :
-  *        1) Configure the Transfer mode as memory to memory with blending.
-  *        2) Configure the output color mode as RGB565 pixel format.
-  *        3) Configure the foreground
-  *          - first image loaded from FLASH memory
-  *          - constant alpha value (decreased to see the background)
-  *          - color mode as RGB565 pixel format
-  *        4) Configure the background
-  *          - second image loaded from FLASH memory
-  *          - color mode as RGB565 pixel format
-  * @retval None
-  */
-static void DMA2D_Config(void)
-{
-    /* Configure the DMA2D Mode, Color Mode and output offset */
-    Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
-#if LV_COLOR_DEPTH == 16
-    Dma2dHandle.Init.ColorMode    = DMA2D_RGB565;
-#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
-    Dma2dHandle.Init.ColorMode    = DMA2D_ARGB8888;
-#endif
-    Dma2dHandle.Init.OutputOffset = 0x0;
-
-    /* DMA2D Callbacks Configuration */
-    Dma2dHandle.XferCpltCallback  = DMA2D_TransferComplete;
-    Dma2dHandle.XferErrorCallback = DMA2D_TransferError;
-
-    /* Foreground Configuration */
-    Dma2dHandle.LayerCfg[1].AlphaMode = DMA2D_REPLACE_ALPHA;
-    Dma2dHandle.LayerCfg[1].InputAlpha = 0xFF;
-#if LV_COLOR_DEPTH == 16
-    Dma2dHandle.LayerCfg[1].InputColorMode = DMA2D_INPUT_RGB565;
-#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
-    Dma2dHandle.LayerCfg[1].InputColorMode = DMA2D_INPUT_ARGB8888;
-#endif
-
-    Dma2dHandle.LayerCfg[1].InputOffset = 0x0;
-
-    /* Background Configuration */
-    Dma2dHandle.LayerCfg[0].AlphaMode = DMA2D_REPLACE_ALPHA;
-    Dma2dHandle.LayerCfg[0].InputAlpha = 0xFF;
-#if LV_COLOR_DEPTH == 16
-    Dma2dHandle.LayerCfg[0].InputColorMode = DMA2D_INPUT_RGB565;
-#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
-    Dma2dHandle.LayerCfg[0].InputColorMode = DMA2D_INPUT_ARGB8888;
-#endif
-    Dma2dHandle.LayerCfg[0].InputOffset = 0x0;
-
-    Dma2dHandle.Instance   = DMA2D;
-
-    /* DMA2D Initialization */
-    if(HAL_DMA2D_Init(&Dma2dHandle) != HAL_OK)
-    {
-        /* Initialization Error */
-        Error_Handler();
-    }
-
-    HAL_DMA2D_ConfigLayer(&Dma2dHandle, 0);
-    HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
-}
-#endif

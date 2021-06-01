@@ -5,7 +5,7 @@
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
 
-#include "lv_examples/lv_examples.h"
+#include "lv_examples/lv_demo.h"
 
 static void SystemClock_Config(void);
 
@@ -20,7 +20,7 @@ int main(void)
     SCB_EnableICache();
 
     /* Enable D-Cache */
-    SCB_EnableDCache();
+    /*SCB_EnableDCache();*/
 
     lv_init();
 

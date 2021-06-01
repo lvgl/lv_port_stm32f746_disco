@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "hal_stm_lvgl/tft/tft.h"
-#include "lvgl/src/lv_hal/lv_hal.h"
+#include "lvgl/src/hal/lv_hal.h"
 
 #include "stm32746g_discovery.h"
 #include "stm32746g_discovery_ts.h"
@@ -23,7 +23,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static bool touchpad_read(lv_indev_drv_t *drv, lv_indev_data_t *data);
+static void touchpad_read(lv_indev_drv_t *drv, lv_indev_data_t *data);
 
 /**********************
  *  STATIC VARIABLES
@@ -45,7 +45,7 @@ void touchpad_init(void)
 {
     BSP_TS_Init(TFT_HOR_RES, TFT_VER_RES);
 
-    lv_indev_drv_t indev_drv;                       /*Descriptor of an input device driver*/
+    static lv_indev_drv_t indev_drv;                       /*Descriptor of an input device driver*/
     lv_indev_drv_init(&indev_drv);                  /*Basic initialization*/
     indev_drv.type = LV_INDEV_TYPE_POINTER;         /*The touchpad is pointer type device*/
     indev_drv.read_cb = touchpad_read;
@@ -64,7 +64,7 @@ void touchpad_init(void)
  * @param y put the y coordinate here
  * @return true: the device is pressed, false: released
  */
-static bool touchpad_read(lv_indev_drv_t *indev, lv_indev_data_t *data)
+static void touchpad_read(lv_indev_drv_t *indev, lv_indev_data_t *data)
 {
     /* Read your touchpad */
     static int16_t last_x = 0;
@@ -77,12 +77,10 @@ static bool touchpad_read(lv_indev_drv_t *indev, lv_indev_data_t *data)
             data->point.y = TS_State.touchY[0];
             last_x = data->point.x;
             last_y = data->point.y;
-            data->state = LV_INDEV_STATE_PR;
+            data->state = LV_INDEV_STATE_PRESSED;
     } else {
             data->point.x = last_x;
             data->point.y = last_y;
-            data->state = LV_INDEV_STATE_REL;
+            data->state = LV_INDEV_STATE_RELEASED;
     }
-
-    return false;   /*false: no more data to read because we are no buffering*/
 }

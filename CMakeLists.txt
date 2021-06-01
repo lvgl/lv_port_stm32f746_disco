@@ -68,10 +68,10 @@ add_definitions(
 
 # list of modules to build final firmware (without extension .c or .cpp)
 add_executable(${PROJECT_NAME}
-    src/main
-    src/stm32f7xx_it
-    src/syscalls
-    src/system_stm32f7xx
+    src/main.c
+    src/stm32f7xx_it.c
+    src/syscalls.c
+    src/system_stm32f7xx.c
     startup/startup_stm32f746xx.s
     ${HAL_Sources}
     ${LVGL_Sources}
