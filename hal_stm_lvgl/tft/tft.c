@@ -194,7 +194,7 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     y_fill_act = act_y1;
     buf_to_flush = color_p;
 
-	//SCB_CleanInvalidateDCache();
+	SCB_CleanInvalidateDCache();
 	SCB_InvalidateICache();
     /*##-7- Start the DMA transfer using the interrupt mode #*/
     /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
@@ -214,7 +214,7 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
 
 static void ex_disp_clean_dcache(lv_disp_drv_t *drv)
 {
-    //SCB_CleanInvalidateDCache();
+    SCB_CleanInvalidateDCache();
 }
 
 
