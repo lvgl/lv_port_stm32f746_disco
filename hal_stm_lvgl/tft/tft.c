@@ -89,7 +89,7 @@ typedef uint32_t uintpixel_t;
  * SDRAM one. */
 //static uintpixel_t my_fb[TFT_HOR_RES * TFT_VER_RES];
 
-static __IO uintpixel_t * my_fb = (__IO uintpixel_t*) (SDRAM_DEVICE_ADDR);
+static __IO uintpixel_t * my_fb = (__IO uintpixel_t*) (0x60000000);
 
 static DMA_HandleTypeDef  DmaHandle;
 static int32_t            x1_flush;
@@ -357,6 +357,7 @@ static uint8_t LCD_Init(void)
     HAL_GPIO_WritePin(LCD_BL_CTRL_GPIO_PORT, LCD_BL_CTRL_PIN, GPIO_PIN_SET);
 
     BSP_SDRAM_Init();
+    HAL_EnableFMCMemorySwapping();
 
     uint32_t i;
     for(i = 0; i < (TFT_HOR_RES * TFT_VER_RES) ; i++)
