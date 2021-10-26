@@ -196,20 +196,8 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
 
 	SCB_CleanInvalidateDCache();
 	SCB_InvalidateICache();
-    /*##-7- Start the DMA transfer using the interrupt mode #*/
-    /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
-    /* Enable All the DMA interrupts */
-    HAL_StatusTypeDef err;
-    uint32_t length = (x2_flush - x1_flush + 1);
-#if LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
-    length *= 2; /* STM32 DMA uses 16-bit chunks so multiply by 2 for 32-bit color */
-#endif
-    err = HAL_DMA_Start_IT(&DmaHandle,(uint32_t)buf_to_flush, (uint32_t)&my_fb[y_fill_act * TFT_HOR_RES + x1_flush],
-             length);
-    if(err != HAL_OK)
-    {
-        while(1);	/*Halt on error*/
-    }
+	
+	DMA_TransferComplete( &DmaHandle );
 }
 
 static void ex_disp_clean_dcache(lv_disp_drv_t *drv)
@@ -454,7 +442,7 @@ static void DMA_Config(void)
   */
 static void DMA_TransferComplete(DMA_HandleTypeDef *han)
 {
-    y_fill_act ++;
+   
 
     if(y_fill_act > y2_fill) {
     	SCB_CleanInvalidateDCache();
@@ -462,7 +450,7 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
         lv_disp_flush_ready(&disp_drv);
     } else {
     	uint32_t length = (x2_flush - x1_flush + 1);
-        buf_to_flush += x2_flush - x1_flush + 1;
+        
         /*##-7- Start the DMA transfer using the interrupt mode ####################*/
         /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
         /* Enable All the DMA interrupts */
@@ -474,6 +462,8 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
         {
             while(1);	/*Halt on error*/
         }
+        buf_to_flush += x2_flush - x1_flush + 1;
+        y_fill_act ++;
     }
 }
 
