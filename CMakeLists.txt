@@ -3,6 +3,9 @@ include("ide/cmake/arm-none-eabi.cmake")
 # project name
 project(lv_stm32f746 C ASM)
 
+# Generate compile_commands.json file 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # select linker script
 set(LINKER_SCRIPT "LinkerScript.ld")
 
