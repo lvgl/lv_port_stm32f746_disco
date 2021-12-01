@@ -23,3 +23,53 @@ This is LVGL ported to [STM32F746G-DISCO](https://www.st.com/en/evaluation-tools
     * Open IAR workspace at `ide/iar/stm32f746_disco_lvgl.eww`
 3. Connect the Discovery board
 4. Build and run!
+
+# How to build using VSCode and Devcontainers
+
+## Prerequisits
+* [Visual Studio Code](https://code.visualstudio.com/Download)
+* [Visual Studio Code Extension : Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) 
+* [Docker Desktop](https://docs.docker.com/desktop/)
+
+## Using Devcontainers
+For the background to Microsoft's Development containers see [here](https://code.visualstudio.com/docs/remote/containers)
+
+At the project root, open the project using VSCode
+```
+$ code .
+```
+
+VSCode will then pop up a dialog:
+```
+Folder contains a Dev Container configuration file. Reopen folder to develop in a container
+```
+Select *Reopen in Container*
+
+First time through this will build a Docker image from scratch using `.devcontainer/Dockerfile` - this may take a couple of minutes as it includes downloading the `gcc-arm-none-eabi` toolset from `developer.arm.com`. This build is a one-off operation.
+
+Once VSCode has created the Docker image and launched the container, open a new Terminal window (using the VSCode menu). You are now working in an Ubuntu based envrionment.
+
+## To Build
+
+```
+$ cmake -S . -B build -G Ninja
+```
+
+```
+$ cmake --build build
+```
+
+This will create the artifact `build/lv_stm32f756.bin` that can be downloaded to the target board.
+
+To rebuild, simple repeat:
+```
+$ cmake --build build
+```
+
+If you add new files, then rerun:
+```
+$ cmake -S . -B build -G Ninja
+$ cmake --build build
+```
+
+
