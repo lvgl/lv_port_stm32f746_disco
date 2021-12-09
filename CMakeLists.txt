@@ -60,7 +60,7 @@ FILE(GLOB_RECURSE HAL_Sources HAL_Driver/Src/*.c
 FILE(GLOB_RECURSE LVGL_Sources CONFIGURE_DEPENDS hal_stm_lvgl/*.c)
 
 add_subdirectory(lvgl)
-add_subdirectory(lv_examples)
+add_subdirectory(lv_demos)
 
 add_definitions(
     -DSTM32
@@ -88,7 +88,7 @@ target_link_libraries(${PROJECT_NAME}
     -nodefaultlibs
     -Wl,--gc-sections
     m
-    lv_examples
+    lv_demos
     lvgl
     # -nostdlib
 )
