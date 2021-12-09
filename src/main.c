@@ -5,7 +5,7 @@
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
 
-#include "lv_examples/lv_demo.h"
+#include "lv_demos/lv_demo.h"
 
 static void SystemClock_Config(void);
 
@@ -27,6 +27,9 @@ int main(void)
     tft_init();
     touchpad_init();
 
+    // lv_demo_benchmark();
+    // lv_demo_music();
+    // lv_demo_stress();
     lv_demo_widgets();
 
     while (1)
