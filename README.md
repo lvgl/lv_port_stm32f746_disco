@@ -59,7 +59,7 @@ $ cmake -S . -B build -G Ninja
 $ cmake --build build
 ```
 
-This will create the artifact `build/lv_stm32f756.bin` that can be downloaded to the target board.
+This will create the artifact `build/lv_stm32f746.bin` that can be downloaded to the target board.
 
 To rebuild, simple repeat:
 ```
