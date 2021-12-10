@@ -93,8 +93,13 @@ target_link_libraries(${PROJECT_NAME}
     # -nostdlib
 )
 
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    SUFFIX .elf
+    LINK_DEPENDS "${LINKER_SCRIPTS}"
+)
+
 add_custom_target(${PROJECT_NAME}.bin ALL DEPENDS ${PROJECT_NAME})
 add_custom_command(TARGET ${PROJECT_NAME}.bin
-    COMMAND ${CMAKE_C_OBJCOPY} ARGS -O binary ${PROJECT_NAME} ${PROJECT_NAME}.bin)
+    COMMAND ${CMAKE_C_OBJCOPY} ARGS -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY LINK_DEPENDS ${CMAKE_SOURCE_DIR}/${LINKER_SCRIPT})
