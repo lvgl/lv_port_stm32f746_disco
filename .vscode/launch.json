@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug - Openocd docker Remote",
+            "name": "Debug (Remote OpenOCD)",
             "type":"cortex-debug",
             // "cortex-debug.armToolchainPath":"${env:ARM_NONE_EABI_TOOLCHAIN_PATH}/bin",
             "cwd": "${workspaceRoot}",
@@ -17,7 +17,7 @@
             // Connect to an already running OpenOCD instance
             "gdbTarget": "host.docker.internal:3333",
             "svdFile": "${workspaceRoot}/.vscode/STM32F746.svd",
-            "runToMain": true,
+            "runToMain": false,
             // Work around for stopping at main on restart
             "postRestartCommands": [
                 "break main",
@@ -32,19 +32,13 @@
                 "interface/stlink.cfg",
                 "target/stm32f7x.cfg"
             ],
-            "name": "Debug (OpenOCD)",
+            "name": "Debug (Local OpenOCD)",
             "request": "launch",
             "type": "cortex-debug",
-            "showDevDebugOutput": true,
+            "showDevDebugOutput": false,
             "svdFile": "${workspaceRoot}/.vscode/STM32F746.svd",
             "servertype": "openocd",
             "runToMain": true,
-            "preRestartCommands": [
-                "file ${workspaceRoot}/build/debug/lv_stm32f746.elf",
-                "enable breakpoint",
-                "monitor reset halt",
-                "load"
-            ]
         }
     ]
 }
