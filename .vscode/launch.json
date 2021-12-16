@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (Remote OpenOCD)",
+            "type":"cortex-debug",
+            // "cortex-debug.armToolchainPath":"${env:ARM_NONE_EABI_TOOLCHAIN_PATH}/bin",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/debug/lv_stm32f746.elf",
+            "request": "launch",
+            "servertype": "external",
+            // This may need to be arm-none-eabi-gdb depending on your system
+            // "gdbPath" : "${env:ARM_NONE_EABI_TOOLCHAIN_PATH}/bin/arm-none-eabi-gdb",
+            // Connect to an already running OpenOCD instance
+            "gdbTarget": "host.docker.internal:3333",
+            "svdFile": "${workspaceRoot}/.vscode/STM32F746.svd",
+            "runToMain": false,
+            // Work around for stopping at main on restart
+            "postRestartCommands": [
+                "break main",
+                "continue"
+            ]
+        },
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/debug/lv_stm32f746.elf",
+            "device": "STM32F746NGH6",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f7x.cfg"
+            ],
+            "name": "Debug (Local OpenOCD)",
+            "request": "launch",
+            "type": "cortex-debug",
+            "showDevDebugOutput": false,
+            "svdFile": "${workspaceRoot}/.vscode/STM32F746.svd",
+            "servertype": "openocd",
+            "runToMain": true,
+        }
+    ]
+}

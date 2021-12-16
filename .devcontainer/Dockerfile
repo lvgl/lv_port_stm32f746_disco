@@ -21,6 +21,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     build-essential \
     cmake \
     ninja-build \
+    libncurses5 \
     cppcheck \
     clang-tidy \
     clang-format \

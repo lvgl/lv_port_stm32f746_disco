@@ -51,25 +51,40 @@ Once VSCode has created the Docker image and launched the container, open a new 
 
 ## To Build
 
+There is a build script supplied. Simply run
 ```
-$ cmake -S . -B build -G Ninja
+$ ./build.sh
 ```
+This will create the artifacts:
 
-```
-$ cmake --build build
-```
-
-This will create the artifact `build/lv_stm32f746.bin` that can be downloaded to the target board.
+* `build/debug/lv_stm32f746.elf` 
+* `build/debug/lv_stm32f746.bin`
 
 To rebuild, simple repeat:
 ```
-$ cmake --build build
+$ ./build.sh
 ```
 
-If you add new files, then rerun:
+If you add new files, then run:
 ```
-$ cmake -S . -B build -G Ninja
-$ cmake --build build
+$ ./build.sh reset
 ```
 
 
+## Debugging
+
+To debug from within the container, `OpenOCD` need to run locally to connect to the target board.
+
+In a terminal window run
+```
+openocd -f Release/stm32f7.cfg
+```
+OpenOCD will then wait on port `3333` for a gdb connection
+```
+Info : starting gdb server for stm32f7x.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+```
+
+In VSCode/devcontainer select the Run/Debug option `Debug (Remote OpenOCD)`. 
+
+The container uses `arm-none-eabi-gdb` to connect to OpenOCD on port `3333` to reflash the board and support source-level debug.
