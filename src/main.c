@@ -1,11 +1,11 @@
 
 #include "stm32f7xx.h"
-#include "lvgl/lvgl.h"
+#include "lvgl.h"
 
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
 
-#include "lv_demos/lv_demo.h"
+#include "lv_demo.h"
 
 static void SystemClock_Config(void);
 

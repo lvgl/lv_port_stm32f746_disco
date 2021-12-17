@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 #include "hal_stm_lvgl/tft/tft.h"
-#include "lvgl/src/hal/lv_hal.h"
+#include "src/hal/lv_hal.h"
 
 #include "stm32746g_discovery.h"
 #include "stm32746g_discovery_ts.h"

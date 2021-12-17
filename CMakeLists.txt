@@ -1,10 +1,39 @@
 cmake_minimum_required(VERSION 3.10)
+include(FetchContent)
+Set(FETCHCONTENT_QUIET FALSE)   # set to TRUE to suppress FetchContent progress
+
 include("ide/cmake/arm-none-eabi.cmake")
 # project name
-project(lv_stm32f746 C ASM)
+project(lv_stm32f746 C CXX ASM)
 
 # Generate compile_commands.json file 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+
+# Specify path to own LVGL config header
+set(LV_CONF_PATH
+    ${CMAKE_CURRENT_SOURCE_DIR}/lv_conf.h
+    CACHE STRING "" FORCE)
+
+# Specify path to own LVGL demos config header
+set(LV_DEMO_CONF_PATH
+    ${CMAKE_CURRENT_SOURCE_DIR}/lv_demo_conf.h
+    CACHE STRING "" FORCE)
+
+# Fetch LVGL from GitHub
+FetchContent_Declare(
+    lvgl 
+    GIT_REPOSITORY https://github.com/lvgl/lvgl.git
+)
+
+# Fetch LVGL demos from GitHub
+FetchContent_Declare(
+    lv_demos
+    GIT_REPOSITORY https://github.com/lvgl/lv_demos.git
+)
+
+FetchContent_MakeAvailable(lv_demos lvgl)
+
 
 # select linker script
 set(LINKER_SCRIPT "LinkerScript.ld")
@@ -31,7 +60,6 @@ add_compile_options(
     -fstrict-volatile-bitfields
     -ffunction-sections
     -fdata-sections
-
     -Wall
     -Wshadow
 )
@@ -42,8 +70,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/HAL_Driver/Inc
     ${CMAKE_SOURCE_DIR}/CMSIS/device
     ${CMAKE_SOURCE_DIR}/CMSIS/core
-    ${CMAKE_SOURCE_DIR}/lvgl
-    ${CMAKE_SOURCE_DIR}/lv_examples
     ${CMAKE_SOURCE_DIR}/Utilities/STM32746G-Discovery
 )
 
@@ -58,9 +84,6 @@ FILE(GLOB_RECURSE HAL_Sources HAL_Driver/Src/*.c
     Utilities/STM32746G-Discovery/stm32746g_discovery_sdram.c
 )
 FILE(GLOB_RECURSE LVGL_Sources CONFIGURE_DEPENDS hal_stm_lvgl/*.c)
-
-add_subdirectory(lvgl)
-add_subdirectory(lv_demos)
 
 add_definitions(
     -DSTM32
@@ -88,9 +111,8 @@ target_link_libraries(${PROJECT_NAME}
     -nodefaultlibs
     -Wl,--gc-sections
     m
-    lv_demos
-    lvgl
-    # -nostdlib
+    lvgl::demos
+    lvgl::lvgl
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
