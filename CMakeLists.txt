@@ -24,12 +24,15 @@ set(LV_DEMO_CONF_PATH
 FetchContent_Declare(
     lvgl 
     GIT_REPOSITORY https://github.com/lvgl/lvgl.git
+    # GIT_TAG release/v8.1    # v8.1.0 - fails as branch CMakeList missing add_library(lvgl::lvgl ALIAS lvgl)
 )
 
 # Fetch LVGL demos from GitHub
 FetchContent_Declare(
     lv_demos
     GIT_REPOSITORY https://github.com/lvgl/lv_demos.git
+    GIT_TAG 615d40f190fe96c9b7d93c3d1dfd36f4acadf7f9    # v8.1.0
+    # GIT_TAG release/v8.1    # v8.1.0 - alternative form
 )
 
 FetchContent_MakeAvailable(lv_demos lvgl)
