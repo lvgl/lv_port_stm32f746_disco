@@ -3,7 +3,7 @@
 This is LVGL ported to [STM32F746G-DISCO](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html) using 
 [CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) or IAR Embedded Workbench.
 
-**The IAR project is outdated. Contribution is welcome to update it to the latest lvgl version**
+**The IAR project is outdated. Contribution is welcome to update it to the latest lvgl version.**
 
 ## Try it with just a few clicks!
 
