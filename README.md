@@ -3,8 +3,6 @@
 This is LVGL ported to [STM32F746G-DISCO](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html) using 
 [CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) or IAR Embedded Workbench.
 
-**The IAR project is outdated. Contribution is welcome to update it to the latest lvgl version.**
-
 ## Try it with just a few clicks!
 
 1. Download [lv_stm32f746.bin.zip](https://nightly.link/lvgl/lv_port_stm32f746_disco/workflows/stm32_port/master/lv_stm32f746.bin.zip) and extract the binary inside.
@@ -22,7 +20,10 @@ This is LVGL ported to [STM32F746G-DISCO](https://www.st.com/en/evaluation-tools
     1. Install [CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html).
     2. Import the project into your workspace.
   * IAR Embedded Workbench
+
     * Open IAR workspace at `ide/iar/stm32f746_disco_lvgl.eww`
+
+      **NOTE**: LVGL does **NOT** support the 'multi-file compilation' mode.
 3. Connect the Discovery board
 4. Build and run!
 
