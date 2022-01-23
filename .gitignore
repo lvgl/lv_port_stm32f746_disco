@@ -73,3 +73,6 @@ _deps
 
 # macOS
 .DS_Store
+*.pbi
+*.xcl
+*.dep
