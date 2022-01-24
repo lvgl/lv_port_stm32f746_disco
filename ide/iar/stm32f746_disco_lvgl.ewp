@@ -11,9 +11,13 @@
             <name>General</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <version>31</version>
+                <version>33</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
+                <option>
+                    <name>BrowseInfoPath</name>
+                    <state>Debug\BrowseInfo</state>
+                </option>
                 <option>
                     <name>ExePath</name>
                     <state>Debug\Exe</state>
@@ -66,15 +70,7 @@
                 </option>
                 <option>
                     <name>OGLastSavedByProductVersion</name>
-                    <state>8.40.1.21529</state>
-                </option>
-                <option>
-                    <name>GeneralEnableMisra</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>GeneralMisraVerbose</name>
-                    <state>0</state>
+                    <state>9.10.2.39304</state>
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
@@ -97,26 +93,12 @@
                     <state>0</state>
                 </option>
                 <option>
-                    <name>GeneralMisraRules98</name>
-                    <version>0</version>
-                    <state>1000111110110101101110011100111111101110011011000101110111101101100111111111111100110011111001110111001111111111111111111111111</state>
-                </option>
-                <option>
-                    <name>GeneralMisraVer</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>GeneralMisraRules04</name>
-                    <version>0</version>
-                    <state>111101110010111111111000110111111111111111111111111110010111101111010101111111111111111111111111101111111011111001111011111011111111111111111</state>
-                </option>
-                <option>
                     <name>RTConfigPath2</name>
                     <state>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</state>
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
-                    <version>27</version>
+                    <version>30</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -133,7 +115,7 @@
                 </option>
                 <option>
                     <name>CoreVariant</name>
-                    <version>27</version>
+                    <version>30</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -156,7 +138,7 @@
                 </option>
                 <option>
                     <name>GFPUCoreSlave2</name>
-                    <version>27</version>
+                    <version>30</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -209,18 +191,26 @@
                     <version>0</version>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>OGAarch64Abi</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>OG_32_64Device</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>ICCARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>35</version>
+                <version>37</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
                     <name>CCOptimizationNoSizeConstraints</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>CCDefines</name>
@@ -270,7 +260,7 @@
                 </option>
                 <option>
                     <name>CCDiagSuppress</name>
-                    <state></state>
+                    <state>Pa089,Pe188</state>
                 </option>
                 <option>
                     <name>CCDiagRemark</name>
@@ -291,7 +281,7 @@
                 <option>
                     <name>CCAllowList</name>
                     <version>1</version>
-                    <state>00000000</state>
+                    <state>11111110</state>
                 </option>
                 <option>
                     <name>CCDebugInfo</name>
@@ -350,10 +340,6 @@
                     <state></state>
                 </option>
                 <option>
-                    <name>CompilerMisraOverride</name>
-                    <state>0</state>
-                </option>
-                <option>
                     <name>CCIncludePath2</name>
                     <state>$PROJ_DIR$/../..</state>
                     <state>$PROJ_DIR$/../../CMSIS/Core</state>
@@ -375,26 +361,16 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>2</state>
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>1</state>
-                </option>
-                <option>
-                    <name>CompilerMisraRules98</name>
-                    <version>0</version>
-                    <state>1000111110110101101110011100111111101110011011000101110111101101100111111111111100110011111001110111001111111111111111111111111</state>
-                </option>
-                <option>
-                    <name>CompilerMisraRules04</name>
-                    <version>0</version>
-                    <state>111101110010111111111000110111111111111111111111111110010111101111010101111111111111111111111111101111111011111001111011111011111111111111111</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -443,7 +419,7 @@
                 <option>
                     <name>CCOptStrategySlave</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>2</state>
                 </option>
                 <option>
                     <name>CCGuardCalls</name>
@@ -477,13 +453,17 @@
                     <name>OICompilerExtraOption</name>
                     <state>1</state>
                 </option>
+                <option>
+                    <name>CCStackProtection</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>AARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>10</version>
+                <version>11</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
@@ -639,6 +619,10 @@
                     <name>AsmNoLiteralPool</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>PreInclude</name>
+                    <state></state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -678,12 +662,8 @@
                 <extensions></extensions>
                 <cmdline></cmdline>
                 <hasPrio>0</hasPrio>
+                <buildSequence>inputOutputBased</buildSequence>
             </data>
-        </settings>
-        <settings>
-            <name>BICOMP</name>
-            <archiveVersion>0</archiveVersion>
-            <data />
         </settings>
         <settings>
             <name>BUILDACTION</name>
@@ -697,7 +677,7 @@
             <name>ILINK</name>
             <archiveVersion>0</archiveVersion>
             <data>
-                <version>23</version>
+                <version>25</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
@@ -707,10 +687,6 @@
                 <option>
                     <name>IlinkLibIOConfig</name>
                     <state>1</state>
-                </option>
-                <option>
-                    <name>XLinkMisraHandler</name>
-                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkInputFileSlave</name>
@@ -1033,6 +1009,26 @@
                     <name>IlinkRawBinaryAlign2</name>
                     <state></state>
                 </option>
+                <option>
+                    <name>IlinkLogCrtRoutineSelection</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkLogFragmentInfo</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkLogInlining</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkLogMerging</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkDemangle</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -1057,11 +1053,6 @@
             </data>
         </settings>
         <settings>
-            <name>BILINK</name>
-            <archiveVersion>0</archiveVersion>
-            <data />
-        </settings>
-        <settings>
             <name>Coder</name>
             <archiveVersion>0</archiveVersion>
             <data />
@@ -1077,9 +1068,13 @@
             <name>General</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <version>31</version>
+                <version>33</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
+                <option>
+                    <name>BrowseInfoPath</name>
+                    <state>Release\BrowseInfo</state>
+                </option>
                 <option>
                     <name>ExePath</name>
                     <state>Release\Exe</state>
@@ -1135,14 +1130,6 @@
                     <state>8.40.1.21529</state>
                 </option>
                 <option>
-                    <name>GeneralEnableMisra</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>GeneralMisraVerbose</name>
-                    <state>0</state>
-                </option>
-                <option>
                     <name>OGChipSelectEditMenu</name>
                     <state>STM32F746NG	ST STM32F746NG</state>
                 </option>
@@ -1163,26 +1150,12 @@
                     <state>0</state>
                 </option>
                 <option>
-                    <name>GeneralMisraRules98</name>
-                    <version>0</version>
-                    <state>1000111110110101101110011100111111101110011011000101110111101101100111111111111100110011111001110111001111111111111111111111111</state>
-                </option>
-                <option>
-                    <name>GeneralMisraVer</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>GeneralMisraRules04</name>
-                    <version>0</version>
-                    <state>111101110010111111111000110111111111111111111111111110010111101111010101111111111111111111111111101111111011111001111011111011111111111111111</state>
-                </option>
-                <option>
                     <name>RTConfigPath2</name>
                     <state>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</state>
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
-                    <version>27</version>
+                    <version>30</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -1199,7 +1172,7 @@
                 </option>
                 <option>
                     <name>CoreVariant</name>
-                    <version>27</version>
+                    <version>30</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -1222,7 +1195,7 @@
                 </option>
                 <option>
                     <name>GFPUCoreSlave2</name>
-                    <version>27</version>
+                    <version>30</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -1275,13 +1248,21 @@
                     <version>0</version>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>OGAarch64Abi</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>OG_32_64Device</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>ICCARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>35</version>
+                <version>37</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -1417,10 +1398,6 @@
                     <state></state>
                 </option>
                 <option>
-                    <name>CompilerMisraOverride</name>
-                    <state>0</state>
-                </option>
-                <option>
                     <name>CCIncludePath2</name>
                     <state>$PROJ_DIR$/../..</state>
                     <state>$PROJ_DIR$/../../CMSIS/Core</state>
@@ -1452,16 +1429,6 @@
                 <option>
                     <name>CCOptLevelSlave</name>
                     <state>3</state>
-                </option>
-                <option>
-                    <name>CompilerMisraRules98</name>
-                    <version>0</version>
-                    <state>1000111110110101101110011100111111101110011011000101110111101101100111111111111100110011111001110111001111111111111111111111111</state>
-                </option>
-                <option>
-                    <name>CompilerMisraRules04</name>
-                    <version>0</version>
-                    <state>111101110010111111111000110111111111111111111111111110010111101111010101111111111111111111111111101111111011111001111011111011111111111111111</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -1544,13 +1511,17 @@
                     <name>OICompilerExtraOption</name>
                     <state>1</state>
                 </option>
+                <option>
+                    <name>CCStackProtection</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>AARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>10</version>
+                <version>11</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -1706,6 +1677,10 @@
                     <name>AsmNoLiteralPool</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>PreInclude</name>
+                    <state></state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -1745,12 +1720,8 @@
                 <extensions></extensions>
                 <cmdline></cmdline>
                 <hasPrio>0</hasPrio>
+                <buildSequence>inputOutputBased</buildSequence>
             </data>
-        </settings>
-        <settings>
-            <name>BICOMP</name>
-            <archiveVersion>0</archiveVersion>
-            <data />
         </settings>
         <settings>
             <name>BUILDACTION</name>
@@ -1764,7 +1735,7 @@
             <name>ILINK</name>
             <archiveVersion>0</archiveVersion>
             <data>
-                <version>23</version>
+                <version>25</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -1774,10 +1745,6 @@
                 <option>
                     <name>IlinkLibIOConfig</name>
                     <state>1</state>
-                </option>
-                <option>
-                    <name>XLinkMisraHandler</name>
-                    <state>0</state>
                 </option>
                 <option>
                     <name>IlinkInputFileSlave</name>
@@ -2100,6 +2067,26 @@
                     <name>IlinkRawBinaryAlign2</name>
                     <state></state>
                 </option>
+                <option>
+                    <name>IlinkLogCrtRoutineSelection</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkLogFragmentInfo</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkLogInlining</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkLogMerging</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkDemangle</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -2122,11 +2109,6 @@
                     <state>###Unitialized###</state>
                 </option>
             </data>
-        </settings>
-        <settings>
-            <name>BILINK</name>
-            <archiveVersion>0</archiveVersion>
-            <data />
         </settings>
         <settings>
             <name>Coder</name>
@@ -2424,45 +2406,90 @@
         <group>
             <name>assets</name>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\img_cogwheel_alpha16.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\animimg001.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\img_cogwheel_argb.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\animimg002.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\img_cogwheel_chroma_keyed.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\animimg003.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\img_cogwheel_indexed16.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_caret_down.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\img_cogwheel_rgb.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_alpha16.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\img_hand.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_argb.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\lv_font_montserrat_12_compr_az.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_chroma_keyed.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\lv_font_montserrat_16_compr_az.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_indexed16.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\lv_examples\assets\lv_font_montserrat_28_compr_az.c</name>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_rgb.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_hand.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_skew_strip.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_star.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\imgbtn_left.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\imgbtn_mid.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\imgbtn_right.c</name>
             </file>
         </group>
         <group>
             <name>src</name>
             <group>
                 <name>lv_demo_benchmark</name>
+                <group>
+                    <name>assets</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_alpha16.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_argb.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_chroma_keyed.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_indexed16.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_rgb.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\lv_font_montserrat_12_compr_az.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\lv_font_montserrat_16_compr_az.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\lv_font_montserrat_28_compr_az.c</name>
+                    </file>
+                </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_benchmark\lv_demo_benchmark.c</name>
+                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\lv_demo_benchmark.c</name>
                 </file>
             </group>
             <group>
                 <name>lv_demo_keypad_encoder</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_keypad_encoder\lv_demo_keypad_encoder.c</name>
+                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_keypad_encoder\lv_demo_keypad_encoder.c</name>
                 </file>
             </group>
             <group>
@@ -2566,409 +2593,40 @@
                 </file>
             </group>
             <group>
-                <name>lv_demo_printer</name>
+                <name>lv_demo_stress</name>
                 <group>
-                    <name>images</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_icon_bright.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_icon_eco.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_icon_hue.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_icon_pc.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_icon_tel.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_icon_wifi.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_btn_bg_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_btn_bg_2.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_btn_bg_3.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_btn_bg_4.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_cloud.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_copy.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_internet.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_mobile.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_no_internet.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_phone.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_print.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_printer2.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_ready.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_scan.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_scan_example.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_setup.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_usb.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\images\lv_demo_printer_img_wave.c</name>
-                    </file>
+                    <name>assets</name>
                 </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\lv_demo_printer.c</name>
+                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\lv_demo_stress.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_printer\lv_demo_printer_theme.c</name>
+                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\assets\lv_font_montserrat_12_compr_az.c</name>
                 </file>
-            </group>
-            <group>
-                <name>lv_demo_stress</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_stress\lv_demo_stress.c</name>
+                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\assets\lv_font_montserrat_16_compr_az.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\assets\lv_font_montserrat_28_compr_az.c</name>
                 </file>
             </group>
             <group>
                 <name>lv_demo_widgets</name>
+                <group>
+                    <name>assets</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\assets\img_clothes.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\assets\img_demo_widgets_avatar.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\assets\img_lvgl_logo.c</name>
+                    </file>
+                </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_widgets\lv_demo_widgets.c</name>
+                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\lv_demo_widgets.c</name>
                 </file>
-            </group>
-            <group>
-                <name>lv_ex_get_started</name>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_get_started\lv_ex_get_started_1.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_get_started\lv_ex_get_started_2.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_get_started\lv_ex_get_started_3.c</name>
-                </file>
-            </group>
-            <group>
-                <name>lv_ex_style</name>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_1.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_10.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_11.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_2.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_3.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_4.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_5.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_6.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_7.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_8.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_style\lv_ex_style_9.c</name>
-                </file>
-            </group>
-            <group>
-                <name>lv_ex_widgets</name>
-                <group>
-                    <name>lv_ex_arc</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_arc\lv_ex_arc_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_arc\lv_ex_arc_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_bar</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_bar\lv_ex_bar_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_btn</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_btn\lv_ex_btn_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_btn\lv_ex_btn_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_btnmatrix</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_btnmatrix\lv_ex_btnmatrix_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_calendar</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_calendar\lv_ex_calendar_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_canvas</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_canvas\lv_ex_canvas_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_canvas\lv_ex_canvas_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_chart</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_chart\lv_ex_chart_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_chart\lv_ex_chart_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_checkbox</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_checkbox\lv_ex_checkbox_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_cont</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_cont\lv_ex_cont_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_cpicker</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_cpicker\lv_ex_cpicker_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_cpicker\lv_ex_cpicker_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_dropdown</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_dropdown\lv_ex_dropdown_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_dropdown\lv_ex_dropdown_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_gauge</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_gauge\lv_ex_gauge_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_gauge\lv_ex_gauge_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_img</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_img\lv_ex_img_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_img\lv_ex_img_2.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_img\lv_ex_img_3.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_imgbtn</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_imgbtn\imgbtn_blue.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_imgbtn\imgbtn_green.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_imgbtn\lv_ex_imgbtn_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_keyboard</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_keyboard\lv_ex_keyboard_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_label</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_label\lv_ex_label_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_label\lv_ex_label_2.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_label\lv_ex_label_3.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_led</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_led\lv_ex_led_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_line</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_line\lv_ex_line_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_linemeter</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_linemeter\lv_ex_linemeter_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_list</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_list\lv_ex_list_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_msgbox</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_msgbox\lv_ex_msgbox_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_msgbox\lv_ex_msgbox_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_obj</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_obj\lv_ex_obj_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_objmask</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_objmask\lv_ex_objmask_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_objmask\lv_ex_objmask_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_page</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_page\lv_ex_page_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_roller</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_roller\lv_ex_roller_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_slider</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_slider\lv_ex_slider_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_slider\lv_ex_slider_2.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_spinbox</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_spinbox\lv_ex_spinbox_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_spinner</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_spinner\lv_ex_spinner_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_switch</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_switch\lv_ex_switch_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_table</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_table\lv_ex_table_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_tabview</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_tabview\lv_ex_tabview_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_textarea</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_textarea\lv_ex_textarea_1.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_textarea\lv_ex_textarea_2.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_textarea\lv_ex_textarea_3.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_tileview</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_tileview\lv_ex_tileview_1.c</name>
-                    </file>
-                </group>
-                <group>
-                    <name>lv_ex_win</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_ex_widgets\lv_ex_win\lv_ex_win_1.c</name>
-                    </file>
-                </group>
             </group>
         </group>
     </group>
@@ -2977,357 +2635,519 @@
         <group>
             <name>src</name>
             <group>
-                <name>lv_core</name>
+                <name>core</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_core\lv_disp.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_disp.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_core\lv_group.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_event.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_core\lv_indev.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_group.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_core\lv_obj.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_indev.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_core\lv_refr.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_indev_scroll.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_core\lv_style.c</name>
-                </file>
-            </group>
-            <group>
-                <name>lv_draw</name>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_arc.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_blend.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_class.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_img.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_draw.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_label.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_pos.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_line.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_scroll.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_mask.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_style.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_rect.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_style_gen.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_draw_triangle.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_tree.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_img_buf.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_refr.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_img_cache.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_draw\lv_img_decoder.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_theme.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_font</name>
+                <name>draw</name>
+                <group>
+                    <name>gpu</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_nxp_pxp.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_nxp_pxp_osa.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_nxp_vglite.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_sdl.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_stm32_dma2d.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>sw</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_arc.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_blend.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_img.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_letter.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_line.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_mask.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_polygon.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_rect.c</name>
+                    </file>
+                </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_dejavu_16_persian_hebrew.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_arc.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_fmt_txt.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_blend.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_loader.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_img.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_10.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_label.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_12.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_line.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_12_subpx.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_rect.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_14.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_triangle.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_16.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_img_buf.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_18.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_img_cache.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_20.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_22.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_24.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_26.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_28.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_28_compressed.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_30.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_32.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_34.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_36.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_38.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_40.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_42.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_44.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_46.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_48.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_montserrat_8.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_simsun_16_cjk.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_font\lv_font_unscii_8.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_img_decoder.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_gpu</name>
+                <name>extra</name>
+                <group>
+                    <name>layouts</name>
+                    <group>
+                        <name>flex</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\layouts\flex\lv_flex.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>grid</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\layouts\grid\lv_grid.c</name>
+                        </file>
+                    </group>
+                </group>
+                <group>
+                    <name>others</name>
+                    <group>
+                        <name>snapshot</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\others\snapshot\lv_snapshot.c</name>
+                        </file>
+                    </group>
+                </group>
+                <group>
+                    <name>themes</name>
+                    <group>
+                        <name>basic</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\themes\basic\lv_theme_basic.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>default</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\themes\default\lv_theme_default.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>mono</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\themes\mono\lv_theme_mono.c</name>
+                        </file>
+                    </group>
+                </group>
+                <group>
+                    <name>widgets</name>
+                    <group>
+                        <name>animimg</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\animimg\lv_animimg.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>calendar</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\calendar\lv_calendar.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\calendar\lv_calendar_header_arrow.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\calendar\lv_calendar_header_dropdown.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>chart</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\chart\lv_chart.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>colorwheel</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\colorwheel\lv_colorwheel.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>imgbtn</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\imgbtn\lv_imgbtn.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>keyboard</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\keyboard\lv_keyboard.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>led</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\led\lv_led.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>list</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\list\lv_list.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>menu</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\menu\lv_menu.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>meter</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\meter\lv_meter.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>msgbox</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\msgbox\lv_msgbox.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>span</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\span\lv_span.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>spinbox</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\spinbox\lv_spinbox.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>spinner</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\spinner\lv_spinner.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>tabview</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\tabview\lv_tabview.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>tileview</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\tileview\lv_tileview.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>win</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\win\lv_win.c</name>
+                        </file>
+                    </group>
+                </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_gpu\lv_gpu_nxp_pxp.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_gpu\lv_gpu_nxp_pxp_osa.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_gpu\lv_gpu_nxp_vglite.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_gpu\lv_gpu_stm32_dma2d.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\extra\lv_extra.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_hal</name>
+                <name>font</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_hal\lv_hal_disp.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_hal\lv_hal_indev.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_dejavu_16_persian_hebrew.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_hal\lv_hal_tick.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_fmt_txt.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_loader.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_10.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_12.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_12_subpx.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_14.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_16.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_18.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_20.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_22.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_24.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_26.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_28.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_28_compressed.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_30.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_32.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_34.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_36.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_38.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_40.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_42.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_44.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_46.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_48.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_8.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_simsun_16_cjk.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_unscii_16.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_unscii_8.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_misc</name>
+                <name>hal</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_anim.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\hal\lv_hal_disp.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_area.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\hal\lv_hal_indev.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_async.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_bidi.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_color.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_debug.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_fs.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_gc.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_ll.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_log.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_math.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_mem.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_printf.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_task.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_templ.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_txt.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_txt_ap.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_misc\lv_utils.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\hal\lv_hal_tick.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_themes</name>
+                <name>misc</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_themes\lv_theme.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_anim.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_themes\lv_theme_empty.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_anim_timeline.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_themes\lv_theme_material.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_area.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_themes\lv_theme_mono.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_async.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_themes\lv_theme_template.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_bidi.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_color.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_fs.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_gc.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_ll.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_log.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_math.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_mem.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_printf.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_style.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_style_gen.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_templ.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_timer.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_tlsf.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_txt.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_txt_ap.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_utils.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_widgets</name>
+                <name>widgets</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_arc.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_arc.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_bar.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_bar.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_btn.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_btn.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_btnmatrix.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_btnmatrix.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_calendar.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_canvas.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_canvas.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_checkbox.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_chart.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_dropdown.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_checkbox.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_img.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_cont.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_label.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_cpicker.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_line.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_dropdown.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_objx_templ.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_gauge.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_roller.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_img.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_slider.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_imgbtn.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_switch.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_keyboard.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_table.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_label.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_led.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_line.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_linemeter.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_list.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_msgbox.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_objmask.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_objx_templ.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_page.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_roller.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_slider.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_spinbox.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_spinner.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_switch.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_table.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_tabview.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_textarea.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_tileview.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\lv_widgets\lv_win.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_textarea.c</name>
                 </file>
             </group>
         </group>
