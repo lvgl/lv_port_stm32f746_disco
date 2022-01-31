@@ -43,7 +43,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/CMSIS/device
     ${CMAKE_SOURCE_DIR}/CMSIS/core
     ${CMAKE_SOURCE_DIR}/lvgl
-    ${CMAKE_SOURCE_DIR}/lv_examples
     ${CMAKE_SOURCE_DIR}/Utilities/STM32746G-Discovery
 )
 
@@ -60,7 +59,6 @@ FILE(GLOB_RECURSE HAL_Sources HAL_Driver/Src/*.c
 FILE(GLOB_RECURSE LVGL_Sources CONFIGURE_DEPENDS hal_stm_lvgl/*.c)
 
 add_subdirectory(lvgl)
-add_subdirectory(lv_demos)
 
 add_definitions(
     -DSTM32
@@ -88,8 +86,9 @@ target_link_libraries(${PROJECT_NAME}
     -nodefaultlibs
     -Wl,--gc-sections
     m
-    lv_demos
     lvgl
+    lvgl_examples
+    lvgl_demos
     # -nostdlib
 )
 
