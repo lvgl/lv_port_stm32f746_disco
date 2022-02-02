@@ -3181,170 +3181,221 @@
                 <group>
                     <name>assets</name>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_alpha16.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_alpha16.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_argb.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_argb.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_chroma_keyed.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_chroma_keyed.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_indexed16.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_indexed16.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\img_benchmark_cogwheel_rgb.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_rgb.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\lv_font_montserrat_12_compr_az.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_bechmark_montserrat_12_compr_az.c.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\lv_font_montserrat_16_compr_az.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_bechmark_montserrat_16_compr_az.c.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\assets\lv_font_montserrat_28_compr_az.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_bechmark_montserrat_28_compr_az.c.c</name>
                     </file>
                 </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_benchmark\lv_demo_benchmark.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\lv_demo_benchmark.c</name>
                 </file>
             </group>
             <group>
                 <name>lv_demo_keypad_encoder</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_keypad_encoder\lv_demo_keypad_encoder.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\keypad_encoder\lv_demo_keypad_encoder.c</name>
                 </file>
             </group>
             <group>
                 <name>lv_demo_music</name>
                 <group>
-                    <name>272_png</name>
-                </group>
-                <group>
                     <name>assets</name>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_list_pause.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_corner_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_list_play.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_list_pause.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_loop.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_list_pause_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_next.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_list_play.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_pause.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_list_play_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_play.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_loop.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_prev.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_loop_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_btn_rnd.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_next.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_cover_1.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_next_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_cover_2.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_pause.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_cover_3.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_pause_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_cover_4.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_play.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_cover_5.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_play_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_cover_bg.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_prev.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_icon_1.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_prev_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_icon_2.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_rnd.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_icon_3.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_btn_rnd_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_icon_4.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_corner_left.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_list_border.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_corner_left_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_slider_knob.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_corner_right.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_wave_1.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_corner_right_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_wave_1_top.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_cover_1.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_wave_2.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_cover_1_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_wave_2_top.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_cover_2.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\img_lv_demo_music_wave_3.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_cover_2_large.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\assets\lv_demo_music_font_16_bold.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_cover_3.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_cover_3_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_1.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_1_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_2.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_2_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_3.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_3_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_4.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_icon_4_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_list_border.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_list_border_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_logo.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_slider_knob.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_slider_knob_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_wave_bottom.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_wave_bottom_large.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_wave_top.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_wave_top_large.c</name>
                     </file>
                 </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\lv_demo_music.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\music\lv_demo_music.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\lv_demo_music_list.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\music\lv_demo_music_list.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_examples\src\lv_demo_music\lv_demo_music_main.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\music\lv_demo_music_main.c</name>
                 </file>
             </group>
             <group>
                 <name>lv_demo_stress</name>
                 <group>
                     <name>assets</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\stress\assets\lv_font_montserrat_12_compr_az.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\stress\assets\lv_font_montserrat_16_compr_az.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\stress\assets\lv_font_montserrat_28_compr_az.c</name>
+                    </file>
                 </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\lv_demo_stress.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\assets\lv_font_montserrat_12_compr_az.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\assets\lv_font_montserrat_16_compr_az.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_stress\assets\lv_font_montserrat_28_compr_az.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\stress\lv_demo_stress.c</name>
                 </file>
             </group>
             <group>
                 <name>lv_demo_widgets</name>
                 <group>
                     <name>assets</name>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\assets\img_clothes.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\assets\img_demo_widgets_avatar.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\assets\img_lvgl_logo.c</name>
-                    </file>
                 </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lv_demos\src\lv_demo_widgets\lv_demo_widgets.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_clothes.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_demo_widgets_avatar.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_lvgl_logo.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\lv_demo_widgets.c</name>
                 </file>
             </group>
         </group>
@@ -3404,21 +3455,9 @@
             <group>
                 <name>draw</name>
                 <group>
-                    <name>gpu</name>
+                    <name>stm32_dma2d</name>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_nxp_pxp.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_nxp_pxp_osa.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_nxp_vglite.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_sdl.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\gpu\lv_gpu_stm32_dma2d.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\stm32_dma2d\lv_gpu_stm32_dma2d.c</name>
                     </file>
                 </group>
                 <group>
@@ -3433,6 +3472,12 @@
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_blend.c</name>
                     </file>
                     <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_dither.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_gradient.c</name>
+                    </file>
+                    <file>
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_img.c</name>
                     </file>
                     <file>
@@ -3440,9 +3485,6 @@
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_line.c</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_mask.c</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_polygon.c</name>
@@ -3458,9 +3500,6 @@
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_arc.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_blend.c</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_img.c</name>
                 </file>
                 <file>
@@ -3468,6 +3507,9 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_line.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_mask.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_rect.c</name>
