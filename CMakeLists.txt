@@ -69,6 +69,8 @@ add_definitions(
     -DUSE_HAL_DRIVER
 )
 
+target_compile_options(lvgl PRIVATE -DSTM32F7)
+
 # list of modules to build final firmware (without extension .c or .cpp)
 add_executable(${PROJECT_NAME}
     src/main.c
