@@ -13,8 +13,8 @@ set(LINKER_SCRIPT "LinkerScript.ld")
 set(CPU_OPTIONS -mthumb -march=armv7e-m)
 
 # optimizations (-O0 -O1 -O2 -O3 -Os -Ofast -Og -flto)
-set(CMAKE_C_FLAGS_DEBUG "-Og -g -DDEBUG")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -g")
+set(CMAKE_C_FLAGS_DEBUG "-Og -g3 -ggdb -DDEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG "-Og -g3 -ggdb")
 set(CMAKE_C_FLAGS_RELEASE "-Os")
 set(CMAKE_CXX_FLAGS_RELEASE "-Os")
 set(CMAKE_ASM_SOURCE_FILE_EXTENSIONS s)
@@ -43,7 +43,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/CMSIS/device
     ${CMAKE_SOURCE_DIR}/CMSIS/core
     ${CMAKE_SOURCE_DIR}/lvgl
-    ${CMAKE_SOURCE_DIR}/lv_examples
     ${CMAKE_SOURCE_DIR}/Utilities/STM32746G-Discovery
 )
 
@@ -60,7 +59,6 @@ FILE(GLOB_RECURSE HAL_Sources HAL_Driver/Src/*.c
 FILE(GLOB_RECURSE LVGL_Sources CONFIGURE_DEPENDS hal_stm_lvgl/*.c)
 
 add_subdirectory(lvgl)
-add_subdirectory(lv_demos)
 
 add_definitions(
     -DSTM32
@@ -70,6 +68,8 @@ add_definitions(
     -DSTM32F746xx
     -DUSE_HAL_DRIVER
 )
+
+target_compile_options(lvgl PRIVATE -DSTM32F7)
 
 # list of modules to build final firmware (without extension .c or .cpp)
 add_executable(${PROJECT_NAME}
@@ -88,8 +88,9 @@ target_link_libraries(${PROJECT_NAME}
     -nodefaultlibs
     -Wl,--gc-sections
     m
-    lv_demos
     lvgl
+    lvgl_examples
+    lvgl_demos
     # -nostdlib
 )
 
