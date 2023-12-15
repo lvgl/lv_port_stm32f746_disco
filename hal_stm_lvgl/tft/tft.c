@@ -62,8 +62,7 @@
  **********************/
 
 /*These 3 functions are needed by LittlevGL*/
-static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p);
-static void ex_disp_clean_dcache(lv_disp_drv_t *drv);
+static void flush_cb(lv_display_t * disp, const lv_area_t * area, uint8_t * px_map);
 
 static uint8_t LCD_Init(void);
 static void LCD_LayerRgb565Init(uint32_t FB_Address);
@@ -77,7 +76,7 @@ static void DMA_TransferError(DMA_HandleTypeDef *han);
  *  STATIC VARIABLES
  **********************/
 static LTDC_HandleTypeDef  hLtdcHandler;
-static lv_disp_drv_t disp_drv;
+static lv_display_t * display;
 
 #if LV_COLOR_DEPTH == 16
 typedef uint16_t uintpixel_t;
@@ -97,7 +96,7 @@ static int32_t            y1_flush;
 static int32_t            x2_flush;
 static int32_t            y2_fill;
 static int32_t            y_fill_act;
-static const lv_color_t * buf_to_flush;
+static const uint16_t * buf_to_flush;
 
 static lv_disp_t *our_disp = NULL;
 /**********************
@@ -124,51 +123,19 @@ void tft_init(void)
 
     DMA_Config();
 
-   /*-----------------------------
-	* Create a buffer for drawing
-	*----------------------------*/
 
-   /* LittlevGL requires a buffer where it draws the objects. The buffer's has to be greater than 1 display row*/
-
-	static lv_disp_draw_buf_t disp_buf_1;
-	static lv_color_t buf1_1[TFT_HOR_RES * 68];
-	static lv_color_t buf1_2[TFT_HOR_RES * 68];
-	lv_disp_draw_buf_init(&disp_buf_1, buf1_1, buf1_2, TFT_HOR_RES * 68);   /*Initialize the display buffer*/
-
-
-	/*-----------------------------------
-	* Register the display in LittlevGL
-	*----------------------------------*/
-
-	lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
-
-	/*Set up the functions to access to your display*/
-
-	/*Set the resolution of the display*/
-	disp_drv.hor_res = 480;
-	disp_drv.ver_res = 272;
-
-	/*Used to copy the buffer's content to the display*/
-	disp_drv.flush_cb = ex_disp_flush;
-	disp_drv.clean_dcache_cb = ex_disp_clean_dcache;
-
-	/*Set a display buffer*/
-	disp_drv.draw_buf = &disp_buf_1;
-
-
-	/*Finally register the driver*/
-	our_disp = lv_disp_drv_register(&disp_drv);
+	static uint16_t buf1[TFT_HOR_RES * 68];
+	static uint16_t buf2[TFT_HOR_RES * 68];
+    display = lv_display_create(TFT_HOR_RES, TFT_VER_RES);
+    lv_display_set_draw_buffers(display, buf1, buf2, sizeof(buf1), LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_flush_cb(display, flush_cb);
 }
 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
 
-/* Flush the content of the internal buffer the specific area on the display
- * You can use DMA or any hardware acceleration to do this operation in the background but
- * 'lv_flush_ready()' has to be called when finished
- * This function is required only when LV_VDB_SIZE != 0 in lv_conf.h*/
-static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t * color_p)
+static void flush_cb(lv_display_t * disp, const lv_area_t *area, uint8_t * px_map)
 {
 	int32_t x1 = area->x1;
 	int32_t x2 = area->x2;
@@ -192,10 +159,11 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     x2_flush = act_x2;
     y2_fill = act_y2;
     y_fill_act = act_y1;
-    buf_to_flush = color_p;
+    buf_to_flush = (uint16_t *)px_map;
 
 	SCB_CleanInvalidateDCache();
 	SCB_InvalidateICache();
+
     /*##-7- Start the DMA transfer using the interrupt mode #*/
     /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
     /* Enable All the DMA interrupts */
@@ -210,11 +178,6 @@ static void ex_disp_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t 
     {
         while(1);	/*Halt on error*/
     }
-}
-
-static void ex_disp_clean_dcache(lv_disp_drv_t *drv)
-{
-    SCB_CleanInvalidateDCache();
 }
 
 
@@ -459,7 +422,7 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
     if(y_fill_act > y2_fill) {
     	SCB_CleanInvalidateDCache();
     	SCB_InvalidateICache();
-        lv_disp_flush_ready(&disp_drv);
+        lv_disp_flush_ready(display);
     } else {
     	uint32_t length = (x2_flush - x1_flush + 1);
         buf_to_flush += x2_flush - x1_flush + 1;
