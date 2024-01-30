@@ -127,7 +127,7 @@ void tft_init(void)
 	static uint16_t buf1[TFT_HOR_RES * 68];
 	static uint16_t buf2[TFT_HOR_RES * 68];
     display = lv_display_create(TFT_HOR_RES, TFT_VER_RES);
-    lv_display_set_draw_buffers(display, buf1, buf2, sizeof(buf1), LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_buffers(display, buf1, buf2, sizeof(buf1), LV_DISPLAY_RENDER_MODE_PARTIAL);
     lv_display_set_flush_cb(display, flush_cb);
 }
 
