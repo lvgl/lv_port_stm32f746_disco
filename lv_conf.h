@@ -345,10 +345,15 @@
 #endif
 
 /** Accelerate blends, fills, etc. with STM32 DMA2D */
-#define LV_USE_DRAW_DMA2D 0
+#define LV_USE_DRAW_DMA2D 1
 
 #if LV_USE_DRAW_DMA2D
     #define LV_DRAW_DMA2D_HAL_INCLUDE "stm32f7xx_hal.h"
+
+    /** Define the data cache line size for STM32F7 devices */
+    #ifndef __SCB_DCACHE_LINE_SIZE
+    #define __SCB_DCACHE_LINE_SIZE 32
+    #endif
 
     /* if enabled, the user is required to call `lv_draw_dma2d_transfer_complete_interrupt_handler`
      * upon receiving the DMA2D global interrupt
