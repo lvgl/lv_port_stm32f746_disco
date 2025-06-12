@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    stm32f732xx.h
+  * @file    stm32f730xx.h
   * @author  MCD Application Team
   * @brief   CMSIS Cortex-M7 Device Peripheral Access Layer Header File.
   *
@@ -26,12 +26,12 @@
   * @{
   */
 
-/** @addtogroup stm32f732xx
+/** @addtogroup stm32f730xx
   * @{
   */
 
-#ifndef __STM32F732xx_H
-#define __STM32F732xx_H
+#ifndef __STM32F730xx_H
+#define __STM32F730xx_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -850,6 +850,20 @@ typedef struct
   __IO uint32_t DIEPTXF[0x0F];        /*!< dev Periodic Transmit FIFO              104h-13Ch */
 } USB_OTG_GlobalTypeDef;
 
+/**
+  * @brief USB_HS_PHY_Registers
+  */
+typedef struct
+{
+
+__IO uint32_t USB_HS_PHYC_PLL;         /*!< This register is used to control the PLL of the HS PHY.                       000h */
+__IO uint32_t Reserved04;              /*!< Reserved                                                                      004h */
+__IO uint32_t Reserved08;              /*!< Reserved                                                                      008h */
+__IO uint32_t USB_HS_PHYC_TUNE;        /*!< This register is used to control the tuning interface of the High Speed PHY.  00Ch */
+__IO uint32_t Reserved10;              /*!< Reserved                                                                      010h */
+__IO uint32_t Reserved14;              /*!< Reserved                                                                      014h */
+__IO uint32_t USB_HS_PHYC_LDO;         /*!< This register is used to control the regulator (LDO).                         018h */
+} USB_HS_PHYC_GlobalTypeDef;
 
 /**
   * @brief USB_OTG_device_Registers
@@ -948,8 +962,8 @@ typedef struct
   * @{
   */
 #define RAMITCM_BASE           0x00000000UL /*!< Base address of : 16KB RAM reserved for CPU execution/instruction accessible over ITCM  */
-#define FLASHITCM_BASE         0x00200000UL /*!< Base address of : (up to 512 KB) embedded FLASH memory  accessible over ITCM            */
-#define FLASHAXI_BASE          0x08000000UL /*!< Base address of : (up to 512 KB) embedded FLASH memory accessible over AXI              */
+#define FLASHITCM_BASE         0x00200000UL /*!< Base address of : (up to 64 KB) embedded FLASH memory  accessible over ITCM             */
+#define FLASHAXI_BASE          0x08000000UL /*!< Base address of : (up to 64 KB) embedded FLASH memory accessible over AXI               */
 #define RAMDTCM_BASE           0x20000000UL /*!< Base address of : 64KB system data RAM accessible over DTCM                             */
 #define PERIPH_BASE            0x40000000UL /*!< Base address of : AHB/ABP Peripherals                                                   */
 #define BKPSRAM_BASE           0x40024000UL /*!< Base address of : Backup SRAM(4 KB)                                                     */
@@ -958,7 +972,7 @@ typedef struct
 #define QSPI_R_BASE            0xA0001000UL /*!< Base address of : QSPI Control  registers                                               */
 #define SRAM1_BASE             0x20010000UL /*!< Base address of : 176KB RAM1 accessible over AXI/AHB                                    */
 #define SRAM2_BASE             0x2003C000UL /*!< Base address of : 16KB RAM2 accessible over AXI/AHB                                     */
-#define FLASH_END              0x0807FFFFUL /*!< FLASH end address */
+#define FLASH_END              0x0800FFFFUL /*!< FLASH end address */
 #define FLASH_OTP_BASE         0x1FF07800UL /*!< Base address of : (up to 528 Bytes) embedded FLASH OTP Area                             */
 #define FLASH_OTP_END          0x1FF07A0FUL /*!< End address of : (up to 528 Bytes) embedded FLASH OTP Area                              */
 
@@ -1077,6 +1091,7 @@ typedef struct
 /*!< USB registers base address */
 #define USB_OTG_HS_PERIPH_BASE               0x40040000UL
 #define USB_OTG_FS_PERIPH_BASE               0x50000000UL
+#define USB_HS_PHYC_CONTROLLER_BASE          0x40017C00UL
 
 #define USB_OTG_GLOBAL_BASE                  0x0000UL
 #define USB_OTG_DEVICE_BASE                  0x0800UL
@@ -1190,6 +1205,7 @@ typedef struct
 #define DBGMCU              ((DBGMCU_TypeDef *) DBGMCU_BASE)
 #define USB_OTG_FS          ((USB_OTG_GlobalTypeDef *) USB_OTG_FS_PERIPH_BASE)
 #define USB_OTG_HS          ((USB_OTG_GlobalTypeDef *) USB_OTG_HS_PERIPH_BASE)
+#define USB_HS_PHYC         ((USB_HS_PHYC_GlobalTypeDef *) USB_HS_PHYC_CONTROLLER_BASE)
 #define SDMMC2              ((SDMMC_TypeDef *) SDMMC2_BASE)
 
 /**
@@ -6569,7 +6585,7 @@ typedef struct
 /*
 * @brief FLASH Total Sectors Number
 */
-#define FLASH_SECTOR_TOTAL  8
+#define FLASH_SECTOR_TOTAL  4
 
 /*******************  Bits definition for FLASH_ACR register  *****************/
 #define FLASH_ACR_LATENCY_Pos         (0U)
@@ -9775,6 +9791,9 @@ typedef struct
 #define RCC_APB2RSTR_SAI2RST_Pos           (23U)
 #define RCC_APB2RSTR_SAI2RST_Msk           (0x1UL << RCC_APB2RSTR_SAI2RST_Pos)  /*!< 0x00800000 */
 #define RCC_APB2RSTR_SAI2RST               RCC_APB2RSTR_SAI2RST_Msk
+#define RCC_APB2RSTR_OTGPHYCRST_Pos        (31U)
+#define RCC_APB2RSTR_OTGPHYCRST_Msk        (0x1UL << RCC_APB2RSTR_OTGPHYCRST_Pos) /*!< 0x80000000 */
+#define RCC_APB2RSTR_OTGPHYCRST            RCC_APB2RSTR_OTGPHYCRST_Msk
 
 /********************  Bit definition for RCC_AHB1ENR register  ***************/
 #define RCC_AHB1ENR_GPIOAEN_Pos            (0U)
@@ -9980,6 +9999,9 @@ typedef struct
 #define RCC_APB2ENR_SAI2EN_Pos             (23U)
 #define RCC_APB2ENR_SAI2EN_Msk             (0x1UL << RCC_APB2ENR_SAI2EN_Pos)    /*!< 0x00800000 */
 #define RCC_APB2ENR_SAI2EN                 RCC_APB2ENR_SAI2EN_Msk
+#define RCC_APB2ENR_OTGPHYCEN_Pos          (31U)
+#define RCC_APB2ENR_OTGPHYCEN_Msk          (0x1UL << RCC_APB2ENR_OTGPHYCEN_Pos) /*!< 0x80000000 */
+#define RCC_APB2ENR_OTGPHYCEN              RCC_APB2ENR_OTGPHYCEN_Msk
 
 /********************  Bit definition for RCC_AHB1LPENR register  *************/
 #define RCC_AHB1LPENR_GPIOALPEN_Pos        (0U)
@@ -14522,12 +14544,42 @@ typedef struct
 #define USB_OTG_DEACHINT_OEP1INT                 USB_OTG_DEACHINT_OEP1INT_Msk  /*!< OUT endpoint 1 interrupt bit */
 
 /********************  Bit definition for USB_OTG_GCCFG register  ********************/
+#define USB_OTG_GCCFG_DCDET_Pos                  (0U)
+#define USB_OTG_GCCFG_DCDET_Msk                  (0x1UL << USB_OTG_GCCFG_DCDET_Pos) /*!< 0x00000001 */
+#define USB_OTG_GCCFG_DCDET                      USB_OTG_GCCFG_DCDET_Msk       /*!< Data contact detection (DCD) status */
+#define USB_OTG_GCCFG_PDET_Pos                   (1U)
+#define USB_OTG_GCCFG_PDET_Msk                   (0x1UL << USB_OTG_GCCFG_PDET_Pos) /*!< 0x00000002 */
+#define USB_OTG_GCCFG_PDET                       USB_OTG_GCCFG_PDET_Msk        /*!< Primary detection (PD) status */
+#define USB_OTG_GCCFG_SDET_Pos                   (2U)
+#define USB_OTG_GCCFG_SDET_Msk                   (0x1UL << USB_OTG_GCCFG_SDET_Pos) /*!< 0x00000004 */
+#define USB_OTG_GCCFG_SDET                       USB_OTG_GCCFG_SDET_Msk        /*!< Secondary detection (SD) status */
+#define USB_OTG_GCCFG_PS2DET_Pos                 (3U)
+#define USB_OTG_GCCFG_PS2DET_Msk                 (0x1UL << USB_OTG_GCCFG_PS2DET_Pos) /*!< 0x00000008 */
+#define USB_OTG_GCCFG_PS2DET                     USB_OTG_GCCFG_PS2DET_Msk      /*!< DM pull-up detection status */
 #define USB_OTG_GCCFG_PWRDWN_Pos                 (16U)
 #define USB_OTG_GCCFG_PWRDWN_Msk                 (0x1UL << USB_OTG_GCCFG_PWRDWN_Pos) /*!< 0x00010000 */
 #define USB_OTG_GCCFG_PWRDWN                     USB_OTG_GCCFG_PWRDWN_Msk      /*!< Power down */
+#define USB_OTG_GCCFG_BCDEN_Pos                  (17U)
+#define USB_OTG_GCCFG_BCDEN_Msk                  (0x1UL << USB_OTG_GCCFG_BCDEN_Pos) /*!< 0x00020000 */
+#define USB_OTG_GCCFG_BCDEN                      USB_OTG_GCCFG_BCDEN_Msk       /*!< Battery charging detector (BCD) enable */
+#define USB_OTG_GCCFG_DCDEN_Pos                  (18U)
+#define USB_OTG_GCCFG_DCDEN_Msk                  (0x1UL << USB_OTG_GCCFG_DCDEN_Pos) /*!< 0x00040000 */
+#define USB_OTG_GCCFG_DCDEN                      USB_OTG_GCCFG_DCDEN_Msk       /*!< Data contact detection (DCD) mode enable*/
+#define USB_OTG_GCCFG_PDEN_Pos                   (19U)
+#define USB_OTG_GCCFG_PDEN_Msk                   (0x1UL << USB_OTG_GCCFG_PDEN_Pos) /*!< 0x00080000 */
+#define USB_OTG_GCCFG_PDEN                       USB_OTG_GCCFG_PDEN_Msk        /*!< Primary detection (PD) mode enable*/
+#define USB_OTG_GCCFG_SDEN_Pos                   (20U)
+#define USB_OTG_GCCFG_SDEN_Msk                   (0x1UL << USB_OTG_GCCFG_SDEN_Pos) /*!< 0x00100000 */
+#define USB_OTG_GCCFG_SDEN                       USB_OTG_GCCFG_SDEN_Msk        /*!< Secondary detection (SD) mode enable */
 #define USB_OTG_GCCFG_VBDEN_Pos                  (21U)
 #define USB_OTG_GCCFG_VBDEN_Msk                  (0x1UL << USB_OTG_GCCFG_VBDEN_Pos) /*!< 0x00200000 */
-#define USB_OTG_GCCFG_VBDEN                      USB_OTG_GCCFG_VBDEN_Msk       /*!< USB VBUS Detection Enable */
+#define USB_OTG_GCCFG_VBDEN                      USB_OTG_GCCFG_VBDEN_Msk       /*!< VBUS mode enable */
+#define USB_OTG_GCCFG_OTGIDEN_Pos                (22U)
+#define USB_OTG_GCCFG_OTGIDEN_Msk                (0x1UL << USB_OTG_GCCFG_OTGIDEN_Pos) /*!< 0x00400000 */
+#define USB_OTG_GCCFG_OTGIDEN                    USB_OTG_GCCFG_OTGIDEN_Msk     /*!< OTG Id enable */
+#define USB_OTG_GCCFG_PHYHSEN_Pos                (23U)
+#define USB_OTG_GCCFG_PHYHSEN_Msk                (0x1UL << USB_OTG_GCCFG_PHYHSEN_Pos) /*!< 0x00800000 */
+#define USB_OTG_GCCFG_PHYHSEN                    USB_OTG_GCCFG_PHYHSEN_Msk     /*!< HS PHY enable */
 
 /********************  Bit definition for USB_OTG_DEACHINTMSK register  ********************/
 #define USB_OTG_DEACHINTMSK_IEP1INTM_Pos         (1U)
@@ -15110,6 +15162,48 @@ typedef struct
 #define USB_OTG_PCGCCTL_PHYSUSP_Msk              (0x1UL << USB_OTG_PCGCCTL_PHYSUSP_Pos) /*!< 0x00000010 */
 #define USB_OTG_PCGCCTL_PHYSUSP                  USB_OTG_PCGCCTL_PHYSUSP_Msk   /*!<Bit 1 */
 
+/********************  Bit definition for USBPHYC_PLL1 register  ********************/
+#define USB_HS_PHYC_PLL1_PLLEN_Pos                (0U)
+#define USB_HS_PHYC_PLL1_PLLEN_Msk                (0x1UL << USB_HS_PHYC_PLL1_PLLEN_Pos) /*!< 0x00000001 */
+#define USB_HS_PHYC_PLL1_PLLEN                    USB_HS_PHYC_PLL1_PLLEN_Msk     /*!< Enable PLL */
+#define USB_HS_PHYC_PLL1_PLLSEL_Pos               (1U)
+#define USB_HS_PHYC_PLL1_PLLSEL_Msk               (0x7UL << USB_HS_PHYC_PLL1_PLLSEL_Pos) /*!< 0x0000000E */
+#define USB_HS_PHYC_PLL1_PLLSEL                   USB_HS_PHYC_PLL1_PLLSEL_Msk    /*!< Controls PHY frequency operation selection */
+#define USB_HS_PHYC_PLL1_PLLSEL_1                 (0x1UL << USB_HS_PHYC_PLL1_PLLSEL_Pos) /*!< 0x00000002 */
+#define USB_HS_PHYC_PLL1_PLLSEL_2                 (0x2UL << USB_HS_PHYC_PLL1_PLLSEL_Pos) /*!< 0x00000004 */
+#define USB_HS_PHYC_PLL1_PLLSEL_3                 (0x4UL << USB_HS_PHYC_PLL1_PLLSEL_Pos) /*!< 0x00000008 */
+
+#define USB_HS_PHYC_PLL1_PLLSEL_12MHZ             0x00000000U                                                       /*!< PHY PLL1 input clock frequency 12 MHz   */
+#define USB_HS_PHYC_PLL1_PLLSEL_12_5MHZ           USB_HS_PHYC_PLL1_PLLSEL_1                                         /*!< PHY PLL1 input clock frequency 12.5 MHz */
+#define USB_HS_PHYC_PLL1_PLLSEL_16MHZ             (uint32_t)(USB_HS_PHYC_PLL1_PLLSEL_1 | USB_HS_PHYC_PLL1_PLLSEL_2) /*!< PHY PLL1 input clock frequency 16 MHz   */
+#define USB_HS_PHYC_PLL1_PLLSEL_24MHZ             USB_HS_PHYC_PLL1_PLLSEL_3                                         /*!< PHY PLL1 input clock frequency 24 MHz   */
+#define USB_HS_PHYC_PLL1_PLLSEL_25MHZ             (uint32_t)(USB_HS_PHYC_PLL1_PLLSEL_2 | USB_HS_PHYC_PLL1_PLLSEL_3) /*!< PHY PLL1 input clock frequency 25 MHz   */
+
+/********************  Bit definition for USBPHYC_LDO register  ********************/
+#define USB_HS_PHYC_LDO_USED_Pos                 (0U)
+#define USB_HS_PHYC_LDO_USED_Msk                 (0x1UL << USB_HS_PHYC_LDO_USED_Pos) /*!< 0x00000001 */
+#define USB_HS_PHYC_LDO_USED                     USB_HS_PHYC_LDO_USED_Msk      /*!< Monitors the usage status of the PHY's LDO   */
+#define USB_HS_PHYC_LDO_STATUS_Pos               (1U)
+#define USB_HS_PHYC_LDO_STATUS_Msk               (0x1UL << USB_HS_PHYC_LDO_STATUS_Pos) /*!< 0x00000002 */
+#define USB_HS_PHYC_LDO_STATUS                   USB_HS_PHYC_LDO_STATUS_Msk    /*!< Monitors the status of the PHY's LDO.        */
+#define USB_HS_PHYC_LDO_DISABLE_Pos              (2U)
+#define USB_HS_PHYC_LDO_DISABLE_Msk              (0x1UL << USB_HS_PHYC_LDO_DISABLE_Pos) /*!< 0x00000004 */
+#define USB_HS_PHYC_LDO_DISABLE                  USB_HS_PHYC_LDO_DISABLE_Msk    /*!< Controls disable of the High Speed PHY's LDO */
+
+/* Legacy */
+#define USB_HS_PHYC_PLL_PLLEN_Pos               USB_HS_PHYC_PLL1_PLLEN_Pos
+#define USB_HS_PHYC_PLL_PLLEN_Msk               USB_HS_PHYC_PLL1_PLLEN_Msk
+#define USB_HS_PHYC_PLL_PLLEN                   USB_HS_PHYC_PLL1_PLLEN
+#define USB_HS_PHYC_PLL_PLLSEL_Pos              USB_HS_PHYC_PLL1_PLLSEL_Pos
+#define USB_HS_PHYC_PLL_PLLSEL_Msk              USB_HS_PHYC_PLL1_PLLSEL_Msk
+#define USB_HS_PHYC_PLL_PLLSEL                  USB_HS_PHYC_PLL1_PLLSEL
+#define USB_HS_PHYC_PLL_PLLSEL_1                USB_HS_PHYC_PLL1_PLLSEL_1
+#define USB_HS_PHYC_PLL_PLLSEL_2                USB_HS_PHYC_PLL1_PLLSEL_2
+#define USB_HS_PHYC_PLL_PLLSEL_3                USB_HS_PHYC_PLL1_PLLSEL_3
+
+#define USB_HS_PHYC_LDO_ENABLE_Pos               USB_HS_PHYC_LDO_DISABLE_Pos
+#define USB_HS_PHYC_LDO_ENABLE_Msk               USB_HS_PHYC_LDO_DISABLE_Msk
+#define USB_HS_PHYC_LDO_ENABLE                   USB_HS_PHYC_LDO_DISABLE
 
 
 
@@ -15689,6 +15783,6 @@ typedef struct
 }
 #endif /* __cplusplus */
 
-#endif /* __STM32F732xx_H */
+#endif /* __STM32F730xx_H */
 
 
