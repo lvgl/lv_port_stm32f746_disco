@@ -76,3 +76,31 @@ _deps
 *.pbi
 *.xcl
 *.dep
+
+# IAR
+*.bak
+*.log
+**/settings/*.crun
+**/settings/*.cspy
+**/settings/*.cspy.*
+**/settings/*.dbgdt
+**/settings/*.dni
+**/settings/*.dnx
+**/settings/*.jlink
+**/settings/*.wsdt
+**/settings/*.wspos
+**/settings/*.xcl
+**/settings/*.xml
+.cmake_build
+
+# IAR Debug
+**/BrowseInfo/
+**/C-STAT/
+**/Exe/
+**/List/
+**/Obj/
+**/Debug/
+**/Release/
+*.ninja_deps
+*.ninja_log
+build_ide.ninja
