@@ -30,7 +30,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
-void lv_STM32F746_display_init (void)
+void lv_stm32f746_display_init (void)
 {
 	/* display initialization */
 
