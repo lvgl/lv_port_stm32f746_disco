@@ -43,7 +43,7 @@ static TS_StateTypeDef  TS_State;
  */
 void touchpad_init(void)
 {
-    BSP_TS_Init(TFT_HOR_RES, TFT_VER_RES);
+    BSP_TS_Init(STM32F746_DISPLAY_WIDTH, STM32F746_DISPLAY_HEIGHT);
 
     lv_indev_t * indev = lv_indev_create();
     lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);

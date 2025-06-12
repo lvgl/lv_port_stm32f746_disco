@@ -147,7 +147,7 @@ int main(void)
 
    lv_init();
 
-   tft_init();
+   lv_STM32F746_display_init();
    touchpad_init();
 
    // lv_demo_benchmark();
