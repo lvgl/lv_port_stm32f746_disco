@@ -3555,6 +3555,12 @@
                             <name>$PROJ_DIR$\..\..\lvgl\src\drivers\display\lcd\lv_lcd_generic_mipi.c</name>
                         </file>
                     </group>
+                    <group>
+                        <name>st_ltdc</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\drivers\display\st_ltdc\lv_st_ltdc.c</name>
+                        </file>
+                    </group>
                 </group>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\drivers\lv_drivers.h</name>

@@ -18,8 +18,24 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stm32f7xx.h"
-
+#include "adc.h"
+#include "crc.h"
+#include "dcmi.h"
+#include "dma2d.h"
+#include "eth.h"
+#include "i2c.h"
+#include "ltdc.h"
+#include "quadspi.h"
+#include "rtc.h"
+#include "sai.h"
+#include "sdmmc.h"
+#include "spdifrx.h"
+#include "spi.h"
+#include "tim.h"
+#include "usart.h"
+#include "usb_otg.h"
+#include "gpio.h"
+#include "fmc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -71,32 +87,86 @@ void PeriphCommonClock_Config(void);
   */
 int main(void)
 {
-    HAL_Init();
+    /* USER CODE BEGIN 1 */
 
-    /* Configure the system clock to 216 MHz */
-    SystemClock_Config();
+   /* USER CODE END 1 */
 
-    /* Enable I-Cache */
-    SCB_EnableICache();
+   /* Enable the CPU Cache */
 
-    /* Enable D-Cache */
-    SCB_EnableDCache();
+   /* Enable I-Cache---------------------------------------------------------*/
+   SCB_EnableICache();
 
-    lv_init();
+   /* Enable D-Cache---------------------------------------------------------*/
+   SCB_EnableDCache();
 
-    tft_init();
-    touchpad_init();
+   /* MCU Configuration--------------------------------------------------------*/
 
-    // lv_demo_benchmark();
-    // lv_demo_music();
-    // lv_demo_stress();
-    lv_demo_widgets();
+   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+   HAL_Init();
 
-    while (1)
-    {
-        HAL_Delay(5);
-        lv_task_handler();
-    }
+   /* USER CODE BEGIN Init */
+
+   /* USER CODE END Init */
+
+   /* Configure the system clock */
+   SystemClock_Config();
+
+   /* Configure the peripherals common clocks */
+   PeriphCommonClock_Config();
+
+   /* USER CODE BEGIN SysInit */
+
+   /* USER CODE END SysInit */
+
+   /* Initialize all configured peripherals */
+   MX_GPIO_Init();
+   MX_ADC3_Init();
+   MX_CRC_Init();
+   MX_DCMI_Init();
+   MX_DMA2D_Init();
+   MX_ETH_Init();
+   MX_FMC_Init();
+   MX_I2C1_Init();
+   MX_I2C3_Init();
+   MX_LTDC_Init();
+   MX_QUADSPI_Init();
+   MX_RTC_Init();
+   MX_SAI2_Init();
+   MX_SPDIFRX_Init();
+   MX_SPI2_Init();
+   MX_TIM1_Init();
+   MX_TIM2_Init();
+   MX_TIM3_Init();
+   MX_TIM5_Init();
+   MX_TIM8_Init();
+   MX_TIM12_Init();
+   MX_USART1_UART_Init();
+   MX_USART6_UART_Init();
+   MX_USB_OTG_FS_HCD_Init();
+   /* USER CODE BEGIN 2 */
+
+   lv_init();
+
+   tft_init();
+   touchpad_init();
+
+   // lv_demo_benchmark();
+   // lv_demo_music();
+   // lv_demo_stress();
+   lv_demo_widgets();
+
+   /* USER CODE END 2 */
+
+   /* Infinite loop */
+   /* USER CODE BEGIN WHILE */
+   while (1)
+   {
+      /* USER CODE END WHILE */
+      HAL_Delay(5);
+      lv_timer_handler();
+      /* USER CODE BEGIN 3 */
+   }
+   /* USER CODE END 3 */
 }
 
 /**
