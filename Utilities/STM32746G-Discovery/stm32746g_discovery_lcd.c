@@ -72,11 +72,6 @@ EndDependencies */
 /* Includes ------------------------------------------------------------------*/
 #include "stm32746g_discovery_lcd.h"
 #include "../Fonts/fonts.h"
-#include "../Fonts/font24.c"
-#include "../Fonts/font20.c"
-#include "../Fonts/font16.c"
-#include "../Fonts/font12.c"
-#include "../Fonts/font8.c"
 
 /** @addtogroup BSP
   * @{

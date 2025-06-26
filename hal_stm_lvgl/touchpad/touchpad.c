@@ -45,6 +45,8 @@ void touchpad_init(void)
 {
     BSP_TS_Init(STM32F746_DISPLAY_WIDTH, STM32F746_DISPLAY_HEIGHT);
 
+    BSP_LED_Init(LED1);
+
     lv_indev_t * indev = lv_indev_create();
     lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
     lv_indev_set_read_cb(indev, touchpad_read);
