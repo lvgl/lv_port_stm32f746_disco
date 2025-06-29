@@ -104,3 +104,9 @@ _deps
 *.ninja_deps
 *.ninja_log
 build_ide.ninja
+
+# STMCubeIDE
+.metadata
+.settings
+[Rr]elease
+[Dd]ebug
