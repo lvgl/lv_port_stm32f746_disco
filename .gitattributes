@@ -1,0 +1,2 @@
+# Files used only in Unix (i.e., Docker) should maintain LF line endings
+*.sh            text eol=lf
