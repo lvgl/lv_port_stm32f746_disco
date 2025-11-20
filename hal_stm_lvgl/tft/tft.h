@@ -3,33 +3,34 @@
  *
  */
 
-#ifndef DISP_H
-#define DISP_H
+#ifndef __LV_STM32F746_DISPLAY_H
+#define __LV_STM32F746_DISPLAY_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*********************
  *      INCLUDES
  *********************/
-#include <stdint.h>
-#include "lvgl/src/misc/lv_color.h"
-#include "lvgl/src/misc/lv_area.h"
+
+#include "lvgl/lvgl.h"
 
 /*********************
  *      DEFINES
  *********************/
-#define TFT_HOR_RES 480
-#define TFT_VER_RES 272
 
-/**********************
- *      TYPEDEFS
- **********************/
+#define STM32F746_DISPLAY_WIDTH  480
+#define STM32F746_DISPLAY_HEIGHT 272
 
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void tft_init(void);
 
-/**********************
- *      MACROS
- **********************/
+void lv_stm32f746_display_init (void);
 
+#ifdef __cplusplus
+} /*extern "C"*/
 #endif
+
+#endif /* __LV_STM32F746_DISPLAY_H */
