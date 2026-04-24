@@ -7,33 +7,20 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
-  
+  */
+/* IMPORTANT: One of the following flags must be defined in the preprocessor */
+/* options in order to select the target board revision: !!!!!!!!!! */
+/* USE_STM32746G_DISCO */          /* Applicable for all boards except STM32746G DISCO REVC03 and higher revision */
+/* USE_STM32746G_DISCO_REVC03 */   /* Applicable only for STM32746G DISCO REVC03 and higher revision*/
+
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32746G_DISCOVERY_H
 #define __STM32746G_DISCOVERY_H
@@ -95,10 +82,10 @@ typedef enum
 /** 
   * @brief  Define for STM32746G_DISCOVERY board
   */ 
-#if !defined (USE_STM32746G_DISCO)
- #define USE_STM32746G_DISCO
+#if !defined(USE_STM32746G_DISCO_REVC03) && \
+    !defined(USE_STM32746G_DISCO)
+#define USE_STM32746G_DISCO
 #endif
-
 /** @addtogroup STM32746G_DISCOVERY_LOW_LEVEL_LED
   * @{
   */
@@ -336,4 +323,3 @@ void      BSP_COM_DeInit(COM_TypeDef COM, UART_HandleTypeDef *huart);
 
 #endif /* __STM32746G_DISCOVERY_H */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

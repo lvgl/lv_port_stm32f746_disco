@@ -2,17 +2,29 @@
   ******************************************************************************
   * @file    stm32746g_discovery_qspi.c
   * @author  MCD Application Team
-  * @brief   This file includes a standard driver for the N25Q128A QSPI
-  *          memory mounted on STM32746G-Discovery board.
+  * @brief   This file includes a standard driver for the N25Q128A and W25Q128J QSPI
+  *          memories mounted on STM32746G-Discovery board.
+  *
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
   @verbatim
   ==============================================================================
                      ##### How to use this driver #####
   ==============================================================================  
   [..] 
-   (#) This driver is used to drive the N25Q128A QSPI external
+   (#) This driver is used to drive the N25Q128A and W25Q128J QSPI external
        memory mounted on STM32746G-Discovery board.
        
-   (#) This driver need a specific component driver (N25Q128A) to be included with.
+   (#) This driver need a specific component driver (N25Q128A) and (W25Q128J) to be included with.
 
    (#) Initialization steps:
        (++) Initialize the QPSI external memory using the BSP_QSPI_Init() function. This 
@@ -33,33 +45,6 @@
             (see the QSPI memory data sheet)
   @endverbatim
   ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
   */ 
 
 /* Dependencies
@@ -68,6 +53,7 @@
 - stm32f7xx_hal_cortex.c
 - stm32f7xx_hal_rcc_ex.h
 - n25q128a.h
+- w25Q128j.h
 EndDependencies */
 
 /* Includes ------------------------------------------------------------------*/
@@ -105,7 +91,9 @@ QSPI_HandleTypeDef QSPIHandle;
   * @{
   */ 
 static uint8_t QSPI_ResetMemory          (QSPI_HandleTypeDef *hqspi);
+#if !defined (USE_STM32746G_DISCO_REVC03)
 static uint8_t QSPI_DummyCyclesCfg       (QSPI_HandleTypeDef *hqspi);
+#endif /* USE_STM32746G_DISCO_REVC03 */
 static uint8_t QSPI_WriteEnable          (QSPI_HandleTypeDef *hqspi);
 static uint8_t QSPI_AutoPollingMemReady  (QSPI_HandleTypeDef *hqspi, uint32_t Timeout);
 
@@ -138,7 +126,11 @@ uint8_t BSP_QSPI_Init(void)
   QSPIHandle.Init.ClockPrescaler     = 1; /* QSPI freq = 216 MHz/(1+1) = 108 Mhz */
   QSPIHandle.Init.FifoThreshold      = 4;
   QSPIHandle.Init.SampleShifting     = QSPI_SAMPLE_SHIFTING_HALFCYCLE;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  QSPIHandle.Init.FlashSize          = POSITION_VAL(W25Q128J_FLASH_SIZE) - 1;
+#else /* USE_STM32746G_DISCO */
   QSPIHandle.Init.FlashSize          = POSITION_VAL(N25Q128A_FLASH_SIZE) - 1;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   QSPIHandle.Init.ChipSelectHighTime = QSPI_CS_HIGH_TIME_6_CYCLE; /* Min 50ns for nonRead */
   QSPIHandle.Init.ClockMode          = QSPI_CLOCK_MODE_0;
   QSPIHandle.Init.FlashID            = QSPI_FLASH_ID_1;
@@ -154,13 +146,14 @@ uint8_t BSP_QSPI_Init(void)
   {
     return QSPI_NOT_SUPPORTED;
   }
- 
+#if !defined (USE_STM32746G_DISCO_REVC03)
   /* Configuration of the dummy cycles on QSPI memory side */
   if (QSPI_DummyCyclesCfg(&QSPIHandle) != QSPI_OK)
   {
     return QSPI_NOT_SUPPORTED;
   }
-  
+#endif /* USE_STM32746G_DISCO_REVC03 */
+
   return QSPI_OK;
 }
 
@@ -197,13 +190,21 @@ uint8_t BSP_QSPI_Read(uint8_t* pData, uint32_t ReadAddr, uint32_t Size)
 
   /* Initialize the read command */
   s_command.InstructionMode   = QSPI_INSTRUCTION_1_LINE;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.Instruction       = FAST_READ_QUAD_INOUT_CMD;
+#else /* USE_STM32746G_DISCO */
   s_command.Instruction       = QUAD_INOUT_FAST_READ_CMD;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.AddressMode       = QSPI_ADDRESS_4_LINES;
   s_command.AddressSize       = QSPI_ADDRESS_24_BITS;
   s_command.Address           = ReadAddr;
   s_command.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
   s_command.DataMode          = QSPI_DATA_4_LINES;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.DummyCycles       = W25Q128J_DUMMY_CYCLES_READ_QUAD;
+#else /* USE_STM32746G_DISCO */
   s_command.DummyCycles       = N25Q128A_DUMMY_CYCLES_READ_QUAD;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.NbData            = Size;
   s_command.DdrMode           = QSPI_DDR_MODE_DISABLE;
   s_command.DdrHoldHalfCycle  = QSPI_DDR_HHC_ANALOG_DELAY;
@@ -243,7 +244,11 @@ uint8_t BSP_QSPI_Write(uint8_t* pData, uint32_t WriteAddr, uint32_t Size)
   uint32_t end_addr, current_size, current_addr;
 
   /* Calculation of the size between the write address and the end of the page */
+#if defined (USE_STM32746G_DISCO_REVC03)
+  current_size = W25Q128J_PAGE_SIZE - (WriteAddr % W25Q128J_PAGE_SIZE);
+#else /* USE_STM32746G_DISCO */
   current_size = N25Q128A_PAGE_SIZE - (WriteAddr % N25Q128A_PAGE_SIZE);
+#endif /* USE_STM32746G_DISCO_REVC03 */
 
   /* Check if the size of the data is less than the remaining place in the page */
   if (current_size > Size)
@@ -257,8 +262,13 @@ uint8_t BSP_QSPI_Write(uint8_t* pData, uint32_t WriteAddr, uint32_t Size)
 
   /* Initialize the program command */
   s_command.InstructionMode   = QSPI_INSTRUCTION_1_LINE;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.Instruction       = QUAD_PAGE_PROG_CMD;
+  s_command.AddressMode       = QSPI_ADDRESS_1_LINE;
+#else /* USE_STM32746G_DISCO */
   s_command.Instruction       = EXT_QUAD_IN_FAST_PROG_CMD;
   s_command.AddressMode       = QSPI_ADDRESS_4_LINES;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.AddressSize       = QSPI_ADDRESS_24_BITS;
   s_command.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
   s_command.DataMode          = QSPI_DATA_4_LINES;
@@ -300,7 +310,11 @@ uint8_t BSP_QSPI_Write(uint8_t* pData, uint32_t WriteAddr, uint32_t Size)
     /* Update the address and size variables for next page programming */
     current_addr += current_size;
     pData += current_size;
+#if defined (USE_STM32746G_DISCO_REVC03)
+    current_size = ((current_addr + W25Q128J_PAGE_SIZE) > end_addr) ? (end_addr - current_addr) : W25Q128J_PAGE_SIZE;
+#else /* USE_STM32746G_DISCO */
     current_size = ((current_addr + N25Q128A_PAGE_SIZE) > end_addr) ? (end_addr - current_addr) : N25Q128A_PAGE_SIZE;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   } while (current_addr < end_addr);
   
   return QSPI_OK;
@@ -317,7 +331,11 @@ uint8_t BSP_QSPI_Erase_Block(uint32_t BlockAddress)
 
   /* Initialize the erase command */
   s_command.InstructionMode   = QSPI_INSTRUCTION_1_LINE;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.Instruction       = SECTOR_ERASE_CMD;
+#else /* USE_STM32746G_DISCO */
   s_command.Instruction       = SUBSECTOR_ERASE_CMD;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.AddressMode       = QSPI_ADDRESS_1_LINE;
   s_command.AddressSize       = QSPI_ADDRESS_24_BITS;
   s_command.Address           = BlockAddress;
@@ -341,10 +359,17 @@ uint8_t BSP_QSPI_Erase_Block(uint32_t BlockAddress)
   }
   
   /* Configure automatic polling mode to wait for end of erase */  
+#if defined (USE_STM32746G_DISCO_REVC03)
+  if (QSPI_AutoPollingMemReady(&QSPIHandle, W25Q128J_SECTOR_ERASE_MAX_TIME) != QSPI_OK)
+  {
+    return QSPI_ERROR;
+  }
+#else /* USE_STM32746G_DISCO */
   if (QSPI_AutoPollingMemReady(&QSPIHandle, N25Q128A_SUBSECTOR_ERASE_MAX_TIME) != QSPI_OK)
   {
     return QSPI_ERROR;
   }
+#endif /* USE_STM32746G_DISCO_REVC03 */
 
   return QSPI_OK;
 }
@@ -359,7 +384,11 @@ uint8_t BSP_QSPI_Erase_Chip(void)
 
   /* Initialize the erase command */
   s_command.InstructionMode   = QSPI_INSTRUCTION_1_LINE;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.Instruction       = CHIP_ERASE_CMD;
+#else /* USE_STM32746G_DISCO */
   s_command.Instruction       = BULK_ERASE_CMD;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.AddressMode       = QSPI_ADDRESS_NONE;
   s_command.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
   s_command.DataMode          = QSPI_DATA_NONE;
@@ -381,10 +410,17 @@ uint8_t BSP_QSPI_Erase_Chip(void)
   }
   
   /* Configure automatic polling mode to wait for end of erase */  
+#if defined (USE_STM32746G_DISCO_REVC03)
+  if (QSPI_AutoPollingMemReady(&QSPIHandle, W25Q128J_CHIP_ERASE_MAX_TIME) != QSPI_OK)
+  {
+    return QSPI_ERROR;
+  }
+#else /* USE_STM32746G_DISCO */
   if (QSPI_AutoPollingMemReady(&QSPIHandle, N25Q128A_BULK_ERASE_MAX_TIME) != QSPI_OK)
   {
     return QSPI_ERROR;
   }
+#endif /* USE_STM32746G_DISCO_REVC03 */
 
   return QSPI_OK;
 }
@@ -400,7 +436,11 @@ uint8_t BSP_QSPI_GetStatus(void)
 
   /* Initialize the read flag status register command */
   s_command.InstructionMode   = QSPI_INSTRUCTION_1_LINE;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.Instruction       = READ_STATUS_REG_2_CMD;
+#else /* USE_STM32746G_DISCO */
   s_command.Instruction       = READ_FLAG_STATUS_REG_CMD;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.AddressMode       = QSPI_ADDRESS_NONE;
   s_command.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
   s_command.DataMode          = QSPI_DATA_1_LINE;
@@ -423,6 +463,21 @@ uint8_t BSP_QSPI_GetStatus(void)
   }
   
   /* Check the value of the register */
+#if defined (USE_STM32746G_DISCO_REVC03)
+  if ((reg & W25Q128J_SR2_SUS) != 0)
+  {
+    return QSPI_SUSPENDED;
+  }
+  else if ((reg & W25Q128J_SR_BUSY) != 0)
+  {
+    return QSPI_OK;
+  }
+  else
+  {
+    return QSPI_BUSY;
+  }
+
+#else /* USE_STM32746G_DISCO */
   if ((reg & (N25Q128A_FSR_PRERR | N25Q128A_FSR_VPPERR | N25Q128A_FSR_PGERR | N25Q128A_FSR_ERERR)) != 0)
   {
     return QSPI_ERROR;
@@ -439,6 +494,7 @@ uint8_t BSP_QSPI_GetStatus(void)
   {
     return QSPI_BUSY;
   }
+#endif /* USE_STM32746G_DISCO_REVC03 */
 }
 
 /**
@@ -449,12 +505,20 @@ uint8_t BSP_QSPI_GetStatus(void)
 uint8_t BSP_QSPI_GetInfo(QSPI_Info* pInfo)
 {
   /* Configure the structure with the memory configuration */
+#if defined (USE_STM32746G_DISCO_REVC03)
+  pInfo->FlashSize          = W25Q128J_FLASH_SIZE;
+  pInfo->EraseSectorSize    = W25Q128J_SECTOR_SIZE;
+  pInfo->EraseSectorsNumber = (W25Q128J_FLASH_SIZE/W25Q128J_SECTOR_SIZE);
+  pInfo->ProgPageSize       = W25Q128J_PAGE_SIZE;
+  pInfo->ProgPagesNumber    = (W25Q128J_FLASH_SIZE/W25Q128J_PAGE_SIZE);
+#else /* USE_STM32746G_DISCO */
   pInfo->FlashSize          = N25Q128A_FLASH_SIZE;
   pInfo->EraseSectorSize    = N25Q128A_SUBSECTOR_SIZE;
   pInfo->EraseSectorsNumber = (N25Q128A_FLASH_SIZE/N25Q128A_SUBSECTOR_SIZE);
   pInfo->ProgPageSize       = N25Q128A_PAGE_SIZE;
   pInfo->ProgPagesNumber    = (N25Q128A_FLASH_SIZE/N25Q128A_PAGE_SIZE);
-  
+#endif /* USE_STM32746G_DISCO_REVC03 */
+
   return QSPI_OK;
 }
 
@@ -469,12 +533,20 @@ uint8_t BSP_QSPI_EnableMemoryMappedMode(void)
 
   /* Configure the command for the read instruction */
   s_command.InstructionMode   = QSPI_INSTRUCTION_1_LINE;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.Instruction       = FAST_READ_QUAD_INOUT_CMD;
+#else /* USE_STM32746G_DISCO */
   s_command.Instruction       = QUAD_INOUT_FAST_READ_CMD;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.AddressMode       = QSPI_ADDRESS_4_LINES;
   s_command.AddressSize       = QSPI_ADDRESS_24_BITS;
   s_command.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
   s_command.DataMode          = QSPI_DATA_4_LINES;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_command.DummyCycles       = W25Q128J_DUMMY_CYCLES_READ_QUAD;
+#else /* USE_STM32746G_DISCO */
   s_command.DummyCycles       = N25Q128A_DUMMY_CYCLES_READ_QUAD;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_command.DdrMode           = QSPI_DDR_MODE_DISABLE;
   s_command.DdrHoldHalfCycle  = QSPI_DDR_HHC_ANALOG_DELAY;
   s_command.SIOOMode          = QSPI_SIOO_INST_EVERY_CMD;
@@ -638,6 +710,7 @@ static uint8_t QSPI_ResetMemory(QSPI_HandleTypeDef *hqspi)
   return QSPI_OK;
 }
 
+#if !defined (USE_STM32746G_DISCO_REVC03)
 /**
   * @brief  This function configure the dummy cycles on memory side.
   * @param  hqspi: QSPI handle
@@ -696,6 +769,7 @@ static uint8_t QSPI_DummyCyclesCfg(QSPI_HandleTypeDef *hqspi)
   
   return QSPI_OK;
 }
+#endif /* USE_STM32746G_DISCO_REVC03 */
 
 /**
   * @brief  This function send a Write Enable and wait it is effective.
@@ -724,8 +798,13 @@ static uint8_t QSPI_WriteEnable(QSPI_HandleTypeDef *hqspi)
   }
   
   /* Configure automatic polling mode to wait for write enabling */  
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_config.Match           = W25Q128J_SR_WEL;
+  s_config.Mask            = W25Q128J_SR_WEL;
+#else /* USE_STM32746G_DISCO */
   s_config.Match           = N25Q128A_SR_WREN;
   s_config.Mask            = N25Q128A_SR_WREN;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_config.MatchMode       = QSPI_MATCH_MODE_AND;
   s_config.StatusBytesSize = 1;
   s_config.Interval        = 0x10;
@@ -765,7 +844,11 @@ static uint8_t QSPI_AutoPollingMemReady(QSPI_HandleTypeDef *hqspi, uint32_t Time
   s_command.SIOOMode          = QSPI_SIOO_INST_EVERY_CMD;
 
   s_config.Match           = 0;
+#if defined (USE_STM32746G_DISCO_REVC03)
+  s_config.Mask            = W25Q128J_SR_BUSY;
+#else /* USE_STM32746G_DISCO */
   s_config.Mask            = N25Q128A_SR_WIP;
+#endif /* USE_STM32746G_DISCO_REVC03 */
   s_config.MatchMode       = QSPI_MATCH_MODE_AND;
   s_config.StatusBytesSize = 1;
   s_config.Interval        = 0x10;
@@ -794,5 +877,4 @@ static uint8_t QSPI_AutoPollingMemReady(QSPI_HandleTypeDef *hqspi, uint32_t Time
   * @}
   */ 
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 

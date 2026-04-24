@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-    <fileVersion>3</fileVersion>
+    <fileVersion>4</fileVersion>
     <configuration>
         <name>Debug</name>
         <toolchain>
@@ -11,7 +11,7 @@
             <name>General</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <version>33</version>
+                <version>37</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
@@ -62,7 +62,7 @@
                 </option>
                 <option>
                     <name>RTDescription</name>
-                    <state>Use the normal configuration of the C/C++ runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
+                    <state>A compact configuration of the C/C++14 runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
                 </option>
                 <option>
                     <name>OGProductVersion</name>
@@ -70,7 +70,7 @@
                 </option>
                 <option>
                     <name>OGLastSavedByProductVersion</name>
-                    <state>9.10.2.39304</state>
+                    <state>9.60.4.11196</state>
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
@@ -98,7 +98,7 @@
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
-                    <version>30</version>
+                    <version>34</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -115,7 +115,7 @@
                 </option>
                 <option>
                     <name>CoreVariant</name>
-                    <version>30</version>
+                    <version>34</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -138,7 +138,7 @@
                 </option>
                 <option>
                     <name>GFPUCoreSlave2</name>
-                    <version>30</version>
+                    <version>34</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -199,13 +199,34 @@
                     <name>OG_32_64Device</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>BuildFilesPath</name>
+                    <state>Debug</state>
+                </option>
+                <option>
+                    <name>PointerAuthentication</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>FPU64</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>OG_32_64DeviceCoreSlave</name>
+                    <version>34</version>
+                    <state>41</state>
+                </option>
+                <option>
+                    <name>GOutputSo</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>ICCARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>37</version>
+                <version>39</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
@@ -281,7 +302,7 @@
                 <option>
                     <name>CCAllowList</name>
                     <version>1</version>
-                    <state>11111110</state>
+                    <state>00000000</state>
                 </option>
                 <option>
                     <name>CCDebugInfo</name>
@@ -343,8 +364,9 @@
                     <name>CCIncludePath2</name>
                     <state>$PROJ_DIR$/../..</state>
                     <state>$PROJ_DIR$/../../CMSIS/Core</state>
-                    <state>$PROJ_DIR$/../../CMSIS/device</state>
+                    <state>$PROJ_DIR$/../../CMSIS/Device</state>
                     <state>$PROJ_DIR$/../../HAL_Driver/Inc</state>
+                    <state>$PROJ_DIR$/../../inc</state>
                     <state>$PROJ_DIR$/../../Utilities/STM32746G-Discovery</state>
                 </option>
                 <option>
@@ -361,7 +383,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>3</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -370,7 +392,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>3</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -457,13 +479,29 @@
                     <name>CCStackProtection</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>CCPointerAutentiction</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>CCBranchTargetIdentification</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>CCPosRadRwpi</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>CCPosSharedSlave</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>AARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>11</version>
+                <version>12</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
@@ -623,6 +661,10 @@
                     <name>PreInclude</name>
                     <state></state>
                 </option>
+                <option>
+                    <name>A_32_64Device</name>
+                    <state>1</state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -643,7 +685,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state></state>
+                    <state>stm32f746_disco_lvgl.srec</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -657,27 +699,18 @@
         </settings>
         <settings>
             <name>CUSTOM</name>
-            <archiveVersion>3</archiveVersion>
+            <archiveVersion>4</archiveVersion>
             <data>
                 <extensions></extensions>
                 <cmdline></cmdline>
-                <hasPrio>0</hasPrio>
                 <buildSequence>inputOutputBased</buildSequence>
-            </data>
-        </settings>
-        <settings>
-            <name>BUILDACTION</name>
-            <archiveVersion>1</archiveVersion>
-            <data>
-                <prebuild></prebuild>
-                <postbuild></postbuild>
             </data>
         </settings>
         <settings>
             <name>ILINK</name>
             <archiveVersion>0</archiveVersion>
             <data>
-                <version>25</version>
+                <version>28</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
@@ -1029,6 +1062,26 @@
                     <name>IlinkDemangle</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>IlinkWrapperFileEnable</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkWrapperFile</name>
+                    <state></state>
+                </option>
+                <option>
+                    <name>IlinkProcessor</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>IlinkFpuProcessor</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>IlinkSharedSlave</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -1053,6 +1106,11 @@
             </data>
         </settings>
         <settings>
+            <name>BUILDACTION</name>
+            <archiveVersion>2</archiveVersion>
+            <data />
+        </settings>
+        <settings>
             <name>Coder</name>
             <archiveVersion>0</archiveVersion>
             <data />
@@ -1068,7 +1126,7 @@
             <name>General</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <version>33</version>
+                <version>37</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -1127,7 +1185,7 @@
                 </option>
                 <option>
                     <name>OGLastSavedByProductVersion</name>
-                    <state>8.40.1.21529</state>
+                    <state>9.60.4.11196</state>
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
@@ -1155,7 +1213,7 @@
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
-                    <version>30</version>
+                    <version>34</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -1172,7 +1230,7 @@
                 </option>
                 <option>
                     <name>CoreVariant</name>
-                    <version>30</version>
+                    <version>34</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -1195,7 +1253,7 @@
                 </option>
                 <option>
                     <name>GFPUCoreSlave2</name>
-                    <version>30</version>
+                    <version>34</version>
                     <state>41</state>
                 </option>
                 <option>
@@ -1256,13 +1314,34 @@
                     <name>OG_32_64Device</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>BuildFilesPath</name>
+                    <state>Release</state>
+                </option>
+                <option>
+                    <name>PointerAuthentication</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>FPU64</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>OG_32_64DeviceCoreSlave</name>
+                    <version>34</version>
+                    <state>41</state>
+                </option>
+                <option>
+                    <name>GOutputSo</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>ICCARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>37</version>
+                <version>39</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -1515,13 +1594,29 @@
                     <name>CCStackProtection</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>CCPointerAutentiction</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>CCBranchTargetIdentification</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>CCPosRadRwpi</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>CCPosSharedSlave</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>AARM</name>
             <archiveVersion>2</archiveVersion>
             <data>
-                <version>11</version>
+                <version>12</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -1681,6 +1776,10 @@
                     <name>PreInclude</name>
                     <state></state>
                 </option>
+                <option>
+                    <name>A_32_64Device</name>
+                    <state>1</state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -1715,27 +1814,18 @@
         </settings>
         <settings>
             <name>CUSTOM</name>
-            <archiveVersion>3</archiveVersion>
+            <archiveVersion>4</archiveVersion>
             <data>
                 <extensions></extensions>
                 <cmdline></cmdline>
-                <hasPrio>0</hasPrio>
                 <buildSequence>inputOutputBased</buildSequence>
-            </data>
-        </settings>
-        <settings>
-            <name>BUILDACTION</name>
-            <archiveVersion>1</archiveVersion>
-            <data>
-                <prebuild></prebuild>
-                <postbuild></postbuild>
             </data>
         </settings>
         <settings>
             <name>ILINK</name>
             <archiveVersion>0</archiveVersion>
             <data>
-                <version>25</version>
+                <version>28</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -2087,6 +2177,26 @@
                     <name>IlinkDemangle</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>IlinkWrapperFileEnable</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>IlinkWrapperFile</name>
+                    <state></state>
+                </option>
+                <option>
+                    <name>IlinkProcessor</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>IlinkFpuProcessor</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>IlinkSharedSlave</name>
+                    <state>0</state>
+                </option>
             </data>
         </settings>
         <settings>
@@ -2111,6 +2221,11 @@
             </data>
         </settings>
         <settings>
+            <name>BUILDACTION</name>
+            <archiveVersion>2</archiveVersion>
+            <data />
+        </settings>
+        <settings>
             <name>Coder</name>
             <archiveVersion>0</archiveVersion>
             <data />
@@ -2130,12 +2245,6 @@
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_adc_ex.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_can.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_cec.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_cortex.c</name>
             </file>
             <file>
@@ -2145,25 +2254,10 @@
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_crc_ex.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_cryp.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_cryp_ex.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_dac.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_dac_ex.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_dcmi.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_dcmi_ex.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_dfsdm.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_dma.c</name>
@@ -2181,6 +2275,9 @@
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_eth.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_exti.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_flash.c</name>
             </file>
             <file>
@@ -2188,12 +2285,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_gpio.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_hash.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_hash_ex.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_hcd.c</name>
@@ -2205,46 +2296,19 @@
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_i2s.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_irda.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_iwdg.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_jpeg.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_lptim.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_ltdc.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_ltdc_ex.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_mdios.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_mmc.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_msp_template.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_nand.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_nor.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_pcd.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_pcd_ex.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_pwr.c</name>
@@ -2260,9 +2324,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_rng.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_rtc.c</name>
@@ -2283,19 +2344,13 @@
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_sdram.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_smartcard.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_smartcard_ex.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_smbus.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_spdifrx.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_spi.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_spi_ex.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_sram.c</name>
@@ -2307,82 +2362,19 @@
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_tim_ex.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_timebase_rtc_alarm_template.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_timebase_rtc_wakeup_template.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_timebase_tim_template.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_uart.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_usart.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_wwdg.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_adc.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_crc.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_dac.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_dma.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_dma2d.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_exti.c</name>
+                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_hal_uart_ex.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_fmc.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_gpio.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_i2c.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_lptim.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_pwr.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_rcc.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_rng.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_rtc.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_sdmmc.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_spi.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_tim.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_usart.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_usb.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\HAL_Driver\Src\stm32f7xx_ll_utils.c</name>
             </file>
         </group>
     </group>
@@ -2402,84 +2394,42 @@
         </group>
     </group>
     <group>
-        <name>lv_examples</name>
+        <name>lvgl</name>
         <group>
-            <name>assets</name>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\animimg001.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\animimg002.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\animimg003.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_caret_down.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_alpha16.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_argb.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_chroma_keyed.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_indexed16.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_cogwheel_rgb.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_hand.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_skew_strip.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\img_star.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\imgbtn_left.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\imgbtn_mid.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\lvgl\examples\assets\imgbtn_right.c</name>
-            </file>
-        </group>
-        <group>
-            <name>src</name>
+            <name>demos</name>
             <group>
-                <name>lv_demo_benchmark</name>
+                <name>benchmark</name>
                 <group>
                     <name>assets</name>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_alpha16.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_avatar.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_argb.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_lvgl_logo_argb.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_chroma_keyed.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_lvgl_logo_rgb.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_indexed16.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_benchmark_montserrat_12_aligned.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\img_benchmark_cogwheel_rgb.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_benchmark_montserrat_14_aligned.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_bechmark_montserrat_12_compr_az.c.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_benchmark_montserrat_16_aligned.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_bechmark_montserrat_16_compr_az.c.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_benchmark_montserrat_18_aligned.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_bechmark_montserrat_28_compr_az.c.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_benchmark_montserrat_20_aligned.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_benchmark_montserrat_24_aligned.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\benchmark\assets\lv_font_benchmark_montserrat_26_aligned.c</name>
                     </file>
                 </group>
                 <file>
@@ -2487,17 +2437,13 @@
                 </file>
             </group>
             <group>
-                <name>lv_demo_keypad_encoder</name>
+                <name>keypad_encoder</name>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\demos\keypad_encoder\lv_demo_keypad_encoder.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_demo_music</name>
-                <excluded>
-                    <configuration>Debug</configuration>
-                    <configuration>Release</configuration>
-                </excluded>
+                <name>music</name>
                 <group>
                     <name>assets</name>
                     <file>
@@ -2632,6 +2578,15 @@
                     <file>
                         <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\img_lv_demo_music_wave_top_large.c</name>
                     </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\spectrum_1.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\spectrum_2.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\music\assets\spectrum_3.h</name>
+                    </file>
                 </group>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\demos\music\lv_demo_music.c</name>
@@ -2644,63 +2599,81 @@
                 </file>
             </group>
             <group>
-                <name>lv_demo_stress</name>
+                <name>render</name>
                 <group>
                     <name>assets</name>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\stress\assets\lv_font_montserrat_12_compr_az.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\render\assets\img_render_arc_bg.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\stress\assets\lv_font_montserrat_16_compr_az.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\render\assets\img_render_lvgl_logo_argb8888.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\demos\stress\assets\lv_font_montserrat_28_compr_az.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\render\assets\img_render_lvgl_logo_rgb565.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\render\assets\img_render_lvgl_logo_rgb888.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\render\assets\img_render_lvgl_logo_xrgb8888.c</name>
                     </file>
                 </group>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\render\lv_demo_render.c</name>
+                </file>
+            </group>
+            <group>
+                <name>stress</name>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\demos\stress\lv_demo_stress.c</name>
                 </file>
             </group>
             <group>
-                <name>lv_demo_widgets</name>
+                <name>vector_graphic</name>
                 <group>
                     <name>assets</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\vector_graphic\assets\img_demo_vector_avatar.c</name>
+                    </file>
                 </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_clothes.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\demos\vector_graphic\lv_demo_vector_graphic.c</name>
                 </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_demo_widgets_avatar.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_lvgl_logo.c</name>
-                </file>
+            </group>
+            <group>
+                <name>widgets</name>
+                <group>
+                    <name>assets</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_clothes.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_demo_widgets_avatar.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_demo_widgets_needle.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\assets\img_lvgl_logo.c</name>
+                    </file>
+                </group>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\demos\widgets\lv_demo_widgets.c</name>
                 </file>
             </group>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\demos\lv_demos.c</name>
+            </file>
         </group>
-    </group>
-    <group>
-        <name>lvgl</name>
         <group>
             <name>src</name>
             <group>
                 <name>core</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_disp.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_event.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_global.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_group.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_indev.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_indev_scroll.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj.c</name>
@@ -2712,7 +2685,16 @@
                     <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_draw.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_event.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_id_builtin.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_pos.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_property.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_obj_scroll.c</name>
@@ -2729,20 +2711,59 @@
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_refr.c</name>
                 </file>
+            </group>
+            <group>
+                <name>display</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\core\lv_theme.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\display\lv_display.c</name>
                 </file>
             </group>
             <group>
                 <name>draw</name>
                 <group>
-                    <name>stm32_dma2d</name>
+                    <name>dma2d</name>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\stm32_dma2d\lv_gpu_stm32_dma2d.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\dma2d\lv_draw_dma2d.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\dma2d\lv_draw_dma2d_fill.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\dma2d\lv_draw_dma2d_img.c</name>
                     </file>
                 </group>
                 <group>
                     <name>sw</name>
+                    <group>
+                        <name>blend</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_al88.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_argb8888.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_argb8888_premultiplied.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_i1.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_l8.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_rgb565.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_rgb565_swapped.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\blend\lv_draw_sw_blend_to_rgb888.c</name>
+                        </file>
+                    </group>
                     <file>
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw.c</name>
                     </file>
@@ -2750,13 +2771,16 @@
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_arc.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_blend.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_border.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_dither.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_box_shadow.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_gradient.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_fill.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_grad.c</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_img.c</name>
@@ -2768,20 +2792,38 @@
                         <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_line.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_polygon.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_mask.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_rect.c</name>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_mask_rect.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_transform.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_triangle.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_utils.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\draw\sw\lv_draw_sw_vector.c</name>
                     </file>
                 </group>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_3d.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_arc.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_img.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_buf.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_image.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_label.c</name>
@@ -2799,181 +2841,46 @@
                     <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_triangle.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_img_buf.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_draw_vector.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_img_cache.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_img_decoder.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\draw\lv_image_decoder.c</name>
                 </file>
             </group>
             <group>
-                <name>extra</name>
+                <name>drivers</name>
                 <group>
-                    <name>layouts</name>
+                    <name>display</name>
                     <group>
-                        <name>flex</name>
+                        <name>lcd</name>
                         <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\layouts\flex\lv_flex.c</name>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\drivers\display\lcd\lv_lcd_generic_mipi.c</name>
                         </file>
                     </group>
                     <group>
-                        <name>grid</name>
+                        <name>st_ltdc</name>
                         <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\layouts\grid\lv_grid.c</name>
-                        </file>
-                    </group>
-                </group>
-                <group>
-                    <name>others</name>
-                    <group>
-                        <name>snapshot</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\others\snapshot\lv_snapshot.c</name>
-                        </file>
-                    </group>
-                </group>
-                <group>
-                    <name>themes</name>
-                    <group>
-                        <name>basic</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\themes\basic\lv_theme_basic.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>default</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\themes\default\lv_theme_default.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>mono</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\themes\mono\lv_theme_mono.c</name>
-                        </file>
-                    </group>
-                </group>
-                <group>
-                    <name>widgets</name>
-                    <group>
-                        <name>animimg</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\animimg\lv_animimg.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>calendar</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\calendar\lv_calendar.c</name>
-                        </file>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\calendar\lv_calendar_header_arrow.c</name>
-                        </file>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\calendar\lv_calendar_header_dropdown.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>chart</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\chart\lv_chart.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>colorwheel</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\colorwheel\lv_colorwheel.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>imgbtn</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\imgbtn\lv_imgbtn.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>keyboard</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\keyboard\lv_keyboard.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>led</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\led\lv_led.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>list</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\list\lv_list.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>menu</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\menu\lv_menu.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>meter</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\meter\lv_meter.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>msgbox</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\msgbox\lv_msgbox.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>span</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\span\lv_span.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>spinbox</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\spinbox\lv_spinbox.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>spinner</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\spinner\lv_spinner.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>tabview</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\tabview\lv_tabview.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>tileview</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\tileview\lv_tileview.c</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>win</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\..\lvgl\src\extra\widgets\win\lv_win.c</name>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\drivers\display\st_ltdc\lv_st_ltdc.c</name>
                         </file>
                     </group>
                 </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\extra\lv_extra.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\drivers\lv_drivers.h</name>
                 </file>
             </group>
             <group>
                 <name>font</name>
                 <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_binfont_loader.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_binfont_loader.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_dejavu_16_persian_hebrew.c</name>
@@ -2982,16 +2889,13 @@
                     <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_fmt_txt.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_loader.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_fmt_txt.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_10.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_12.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_12_subpx.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_montserrat_14.c</name>
@@ -3062,21 +2966,213 @@
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_font_unscii_8.c</name>
                 </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\font\lv_symbol_def.h</name>
+                </file>
             </group>
             <group>
-                <name>hal</name>
+                <name>indev</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\hal\lv_hal_disp.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\indev\lv_indev.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\hal\lv_hal_indev.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\indev\lv_indev_scroll.c</name>
                 </file>
+            </group>
+            <group>
+                <name>layouts</name>
+                <group>
+                    <name>flex</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\layouts\flex\lv_flex.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>grid</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\layouts\grid\lv_grid.c</name>
+                    </file>
+                </group>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\hal\lv_hal_tick.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\layouts\lv_layout.c</name>
                 </file>
+            </group>
+            <group>
+                <name>libs</name>
+                <group>
+                    <name>barcode</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\barcode\code128.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\barcode\lv_barcode.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>bin_decoder</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\bin_decoder\lv_bin_decoder.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>bmp</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\bmp\lv_bmp.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>ffmpeg</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\ffmpeg\lv_ffmpeg.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>freetype</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\freetype\ftmodule.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\freetype\ftoption.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\freetype\lv_freetype.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\freetype\lv_freetype_glyph.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\freetype\lv_freetype_image.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\freetype\lv_freetype_outline.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\freetype\lv_ftsystem.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>fsdrv</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_arduino_esp_littlefs.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_arduino_sd.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_cbfs.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_fatfs.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_littlefs.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_memfs.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_posix.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_stdio.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_uefi.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\fsdrv\lv_fs_win32.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>gif</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\gif\gifdec.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\gif\lv_gif.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>libjpeg_turbo</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\libjpeg_turbo\lv_libjpeg_turbo.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>libpng</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\libpng\lv_libpng.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>lodepng</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\lodepng\lodepng.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\lodepng\lv_lodepng.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>qrcode</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\qrcode\lv_qrcode.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\qrcode\qrcodegen.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>tiny_ttf</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\tiny_ttf\lv_tiny_ttf.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>tjpgd</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\tjpgd\lv_tjpgd.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\libs\tjpgd\tjpgd.c</name>
+                    </file>
+                </group>
             </group>
             <group>
                 <name>misc</name>
+                <group>
+                    <name>cache</name>
+                    <group>
+                        <name>class</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\class\lv_cache_class.h</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\class\lv_cache_lru_ll.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\class\lv_cache_lru_rb.c</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>instance</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\instance\lv_cache_instance.h</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\instance\lv_image_cache.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\instance\lv_image_header_cache.c</name>
+                        </file>
+                    </group>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\lv_cache.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\misc\cache\lv_cache_entry.c</name>
+                    </file>
+                </group>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_anim.c</name>
                 </file>
@@ -3087,19 +3183,34 @@
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_area.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_array.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_async.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_bidi.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_circle_buf.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_color.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_color_op.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_event.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_fs.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_gc.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_grad.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_iter.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_ll.c</name>
@@ -3108,13 +3219,22 @@
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_log.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_lru.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_math.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_mem.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_matrix.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_printf.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_palette.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_profiler_builtin.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_rb.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_style.c</name>
@@ -3126,84 +3246,528 @@
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_templ.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_text.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_text_ap.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_timer.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_tlsf.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_txt.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_txt_ap.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_tree.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\lvgl\src\misc\lv_utils.c</name>
                 </file>
             </group>
             <group>
-                <name>widgets</name>
+                <name>osal</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_arc.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_cmsis_rtos2.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_bar.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_freertos.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_btn.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_linux.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_btnmatrix.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_mqx.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_canvas.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_os.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_checkbox.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_os_none.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_dropdown.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_pthread.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_img.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_rtthread.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_label.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_sdl2.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_line.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_objx_templ.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_roller.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_slider.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_switch.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_table.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\lvgl\src\widgets\lv_textarea.c</name>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\osal\lv_windows.c</name>
                 </file>
             </group>
+            <group>
+                <name>others</name>
+                <group>
+                    <name>gridnav</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\gridnav\lv_gridnav.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>observer</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\observer\lv_observer.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>snapshot</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\snapshot\lv_snapshot.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>sysmon</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\sysmon\lv_sysmon.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>test</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\test\lv_test_display.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\test\lv_test_helpers.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\test\lv_test_indev.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\test\lv_test_indev_gesture.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\test\lv_test_screenshot_compare.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>xml</name>
+                    <group>
+                        <name>parsers</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_arc_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_bar_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_button_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_buttonmatrix_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_calendar_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_canvas_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_chart_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_checkbox_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_dropdown_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_event_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_image_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_keyboard_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_label_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_obj_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_roller_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_scale_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_slider_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_spangroup_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_table_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_tabview_parser.c</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\parsers\lv_xml_textarea_parser.c</name>
+                        </file>
+                    </group>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml_base_types.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml_component.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml_parser.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml_style.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml_update.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml_utils.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\others\xml\lv_xml_widget.c</name>
+                    </file>
+                </group>
+            </group>
+            <group>
+                <name>stdlib</name>
+                <group>
+                    <name>builtin</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\stdlib\builtin\lv_mem_core_builtin.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\stdlib\builtin\lv_sprintf_builtin.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\stdlib\builtin\lv_string_builtin.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\stdlib\builtin\lv_tlsf.c</name>
+                    </file>
+                </group>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\stdlib\lv_mem.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\stdlib\lv_sprintf.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\stdlib\lv_string.h</name>
+                </file>
+            </group>
+            <group>
+                <name>themes</name>
+                <group>
+                    <name>default</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\themes\default\lv_theme_default.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>mono</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\themes\mono\lv_theme_mono.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>simple</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\themes\simple\lv_theme_simple.c</name>
+                    </file>
+                </group>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\themes\lv_theme.c</name>
+                </file>
+            </group>
+            <group>
+                <name>tick</name>
+                <file>
+                    <name>$PROJ_DIR$\..\..\lvgl\src\tick\lv_tick.c</name>
+                </file>
+            </group>
+            <group>
+                <name>widgets</name>
+                <group>
+                    <name>animimage</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\animimage\lv_animimage.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>arc</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\arc\lv_arc.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>bar</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\bar\lv_bar.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>button</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\button\lv_button.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>buttonmatrix</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\buttonmatrix\lv_buttonmatrix.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>calendar</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\calendar\lv_calendar.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\calendar\lv_calendar_header_arrow.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\calendar\lv_calendar_header_dropdown.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>canvas</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\canvas\lv_canvas.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>chart</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\chart\lv_chart.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>checkbox</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\checkbox\lv_checkbox.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>dropdown</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\dropdown\lv_dropdown.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>image</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\image\lv_image.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>imagebutton</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\imagebutton\lv_imagebutton.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>keyboard</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\keyboard\lv_keyboard.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>label</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\label\lv_label.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>led</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\led\lv_led.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>line</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\line\lv_line.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>list</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\list\lv_list.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>menu</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\menu\lv_menu.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>msgbox</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\msgbox\lv_msgbox.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>objx_templ</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\objx_templ\lv_objx_templ.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>roller</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\roller\lv_roller.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>scale</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\scale\lv_scale.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>slider</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\slider\lv_slider.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>span</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\span\lv_span.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>spinbox</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\spinbox\lv_spinbox.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>spinner</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\spinner\lv_spinner.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>switch</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\switch\lv_switch.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>table</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\table\lv_table.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>tabview</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\tabview\lv_tabview.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>textarea</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\textarea\lv_textarea.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>tileview</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\tileview\lv_tileview.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>win</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\..\lvgl\src\widgets\win\lv_win.c</name>
+                    </file>
+                </group>
+            </group>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\src\lv_conf_internal.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\src\lv_init.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\lvgl\src\lvgl.h</name>
+            </file>
         </group>
     </group>
     <group>
         <name>src</name>
         <file>
+            <name>$PROJ_DIR$\..\..\src\adc.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\crc.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\dcmi.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\dma2d.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\eth.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\fmc.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\gpio.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\i2c.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\ltdc.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\src\main.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\quadspi.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\rtc.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\sai.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\sdmmc.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\spdifrx.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\spi.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\stm32f7xx_hal_msp.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\src\stm32f7xx_it.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\src\system_stm32f7xx.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\tim.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\usart.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\src\usb_otg.c</name>
         </file>
     </group>
     <group>
@@ -3222,6 +3786,33 @@
                     <name>$PROJ_DIR$\..\..\Utilities\Components\ft5336\ft5336.c</name>
                 </file>
             </group>
+            <group>
+                <name>rk043fn48h</name>
+                <file>
+                    <name>$PROJ_DIR$\..\..\Utilities\Components\rk043fn48h\rk043fn48h.h</name>
+                </file>
+            </group>
+        </group>
+        <group>
+            <name>Fonts</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\Utilities\Fonts\font12.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Utilities\Fonts\font16.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Utilities\Fonts\font20.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Utilities\Fonts\font24.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Utilities\Fonts\font8.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Utilities\Fonts\fonts.h</name>
+            </file>
         </group>
         <group>
             <name>STM32746G-Discovery</name>

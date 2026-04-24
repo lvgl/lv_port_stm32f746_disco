@@ -69,28 +69,51 @@ add_definitions(
     -DUSE_HAL_DRIVER
 )
 
-target_compile_options(lvgl PRIVATE -DSTM32F7)
+target_compile_options(lvgl PRIVATE
+    -DSTM32F7
+    -DSTM32F746xx
+)
 
 # list of modules to build final firmware (without extension .c or .cpp)
 add_executable(${PROJECT_NAME}
     src/main.c
+    src/adc.c
+    src/crc.c
+    src/dcmi.c
+    src/dma2d.c
+    src/eth.c
+    src/fmc.c
+    src/gpio.c
+    src/i2c.c
+    src/ltdc.c
+    src/quadspi.c
+    src/rtc.c
+    src/sai.c
+    src/sdmmc.c
+    src/spdifrx.c
+    src/spi.c
+    src/stm32f7xx_hal_msp.c
     src/stm32f7xx_it.c
-    src/syscalls.c
     src/system_stm32f7xx.c
+    src/tim.c
+    src/usart.c
+    src/usb_otg.c
     startup/startup_stm32f746xx.s
     ${HAL_Sources}
     ${LVGL_Sources}
 )
 
 target_link_libraries(${PROJECT_NAME}
-    ${CPU_OPTIONS}
-    -T${LINKER_SCRIPT}
-    -nodefaultlibs
-    -Wl,--gc-sections
     m
     lvgl
     lvgl_examples
     lvgl_demos
+)
+
+target_link_options(${PROJECT_NAME} PRIVATE
+    ${CPU_OPTIONS}
+    -T${LINKER_SCRIPT}
+    -Wl,--gc-sections
     # -nostdlib
 )
 
